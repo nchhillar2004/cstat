@@ -23,7 +23,7 @@ typedef enum {
 
 /* internal macros */
 #ifdef _MSC_VER
-    #define __CURRENT_FILE_NAME__ "cstat"
+    #define __CURRENT_FILE_NAME__ (TARGET_NAME)
 #else
     #define __CURRENT_FILE_NAME__ (__FILE_NAME__)
 #endif
