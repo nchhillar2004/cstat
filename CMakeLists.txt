@@ -14,6 +14,8 @@ add_executable(cstat
     ${SOURCE_FILES}
 )
 
+target_include_directories(cstat PUBLIC src/)
+
 if (MSVC)
     add_compile_options(/W4)
 else()

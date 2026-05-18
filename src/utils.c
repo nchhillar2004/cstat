@@ -3,7 +3,11 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+bool CSTAT_DISPLAY_LOGS = DEFAULT_DISPLAY_LOGS; 
+
 void _cstat_log(const char *time, const char *filename, const char *function, LogType type, const char *fmt, ...) {
+    if (!CSTAT_DISPLAY_LOGS) return;
+
     va_list args;
 
     char *type_s;
