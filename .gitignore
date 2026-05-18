@@ -1,0 +1,6 @@
+*.out
+*.exe
+*.conf
+.cache/
+build/
+compile_commands.json
