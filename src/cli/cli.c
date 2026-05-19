@@ -44,12 +44,15 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
             return CMD_LANGUAGES;
 
         /* flags */
+        // flags which require a value
         else if ((strcmp(arg, "-max") == 0 || strcmp(arg, "--max-file-size") == 0) && i + 1 < argc)
             config->max_file_size = _parse_arg_value(argv[++i], arg);
         else if ((strcmp(arg, "-min") == 0 || strcmp(arg, "--min-file-size") == 0) && i + 1 < argc)
             config->min_file_size = _parse_arg_value(argv[++i], arg);
         else if ((strcmp(arg, "-t") == 0 || strcmp(arg, "--threads") == 0) && i + 1 < argc)
             config->worker_threads = _parse_arg_value(argv[++i], arg);
+
+        // toggle flags
         else if (strcmp(arg, "-ni") == 0 || strcmp(arg, "--no-ignore") == 0)
             config->use_ignore = false;
         else if (strcmp(arg, "-ng") == 0 || strcmp(arg, "--no-gitignore") == 0)
@@ -60,6 +63,10 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
             config->csv_output = true;
         else if (strcmp(arg, "-d") == 0 || strcmp(arg, "--debug") == 0)
             config->display_logs = CSTAT_DISPLAY_LOGS = true;
+        
+        // else everything is path
+        // TODO: verify if path is correct, file or directory exists
+        // only get valid path, else print 'error: invalid command or flag'
         else
             config->path = arg;
     }
@@ -84,9 +91,10 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
         config->use_cstat_ignore = false;
     }
 
-    long available_threads = sysconf(_SC_NPROCESSORS_ONLN);
+    unsigned int available_threads = getAvailableThreads();
+    // check if user changed threads to less than 1 or more than available threads on the system
     if (config->worker_threads <= 0 || config->worker_threads > available_threads)
-        config->worker_threads = (unsigned int)available_threads;
+        config->worker_threads = available_threads;
 
     logDebug("using %d threads", config->worker_threads);
     logDebug("scanning \"%s\"...", config->path);

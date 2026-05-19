@@ -7,6 +7,11 @@
 #define cstat_utils_h
 
 #include <stdbool.h>
+#ifdef _WIN32
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
 
 typedef enum {
     ERROR,
@@ -34,7 +39,10 @@ extern bool CSTAT_DISPLAY_LOGS;
     #define __CURRENT_FILE_NAME__ (__FILE_NAME__)
 #endif
 #define _LOG(type, ...) (_cstat_log(__TIME__, __CURRENT_FILE_NAME__, __func__, (LogType)type, __VA_ARGS__))
+
 /* FUNCTIONS */
+// get availabel threads on the system
+unsigned int getAvailableThreads();
 
 /* internal/private functions */
 void _cstat_log(const char *time, const char *filename, const char *function, LogType type, const char *fmt, ...);
