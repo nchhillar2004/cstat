@@ -36,7 +36,7 @@ extern bool CSTAT_DISPLAY_LOGS;
 #define _LOG(type, ...) (_cstat_log(__TIME__, __CURRENT_FILE_NAME__, __func__, (LogType)type, __VA_ARGS__))
 
 /* FUNCTIONS */
-// get availabel threads on the system
+// get available threads on the system
 unsigned int getAvailableThreads();
 const char *getFilenameFromPath(const char *filepath);
 
