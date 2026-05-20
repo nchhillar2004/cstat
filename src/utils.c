@@ -2,6 +2,7 @@
 #include "cstat.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
 
 bool CSTAT_DISPLAY_LOGS = DEFAULT_DISPLAY_LOGS;
 
@@ -28,6 +29,20 @@ unsigned int getAvailableThreads() {
         return 64; //
 
     return (unsigned int)cpus;
+}
+
+const char *getFilenameFromPath(const char *filepath) {
+    if (filepath == NULL)
+        return "";
+
+    const char *unix_separator = strrchr(filepath, '/');
+    const char *windows_separator = strrchr(filepath, '\\');
+    const char *separator = unix_separator;
+
+    if (windows_separator != NULL && (separator == NULL || windows_separator > separator))
+        separator = windows_separator;
+
+    return separator == NULL ? filepath : separator + 1;
 }
 
 void _cstat_log(const char *time, const char *filename, const char *function, LogType type, const char *fmt, ...) {
