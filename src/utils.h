@@ -32,17 +32,13 @@ extern bool CSTAT_DISPLAY_LOGS;
 #define logDebug(...) _LOG(CSTAT_LOG_DEBUG, __VA_ARGS__)
 
 /* internal macros */
-#ifdef _MSC_VER
-    // TODO: display filename in MSVC, use __FILE__ and trim the complete path to just the filename
-    #define __CURRENT_FILE_NAME__ (TARGET_NAME)
-#else
-    #define __CURRENT_FILE_NAME__ (__FILE_NAME__)
-#endif
+#define __CURRENT_FILE_NAME__ (getFilenameFromPath(__FILE__))
 #define _LOG(type, ...) (_cstat_log(__TIME__, __CURRENT_FILE_NAME__, __func__, (LogType)type, __VA_ARGS__))
 
 /* FUNCTIONS */
 // get availabel threads on the system
 unsigned int getAvailableThreads();
+const char *getFilenameFromPath(const char *filepath);
 
 /* internal/private functions */
 void _cstat_log(const char *time, const char *filename, const char *function, LogType type, const char *fmt, ...);
