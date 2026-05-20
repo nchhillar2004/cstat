@@ -20,6 +20,10 @@ typedef struct {
     bool display_logs;
 } Config;
 
+
+/* ===== FUNCTIONS ===== */
+
+// initialize default configs
 void initConfig(Config *config);
 
 #endif

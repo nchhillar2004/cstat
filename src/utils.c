@@ -31,6 +31,7 @@ unsigned int getAvailableThreads() {
     return (unsigned int)cpus;
 }
 
+// TODO: review, test this function on both unix and windows systems
 const char *getFilenameFromPath(const char *filepath) {
     if (filepath == NULL)
         return "";

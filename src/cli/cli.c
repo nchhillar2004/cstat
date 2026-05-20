@@ -8,28 +8,6 @@
 #include <threads.h>
 #include <unistd.h>
 
-// internal function to parse and validate the value of an argument flag, 
-// like the --threads flag need a value to change the worker_threads in config
-static unsigned int _parse_arg_value(const char *value, const char *arg) {
-    char *end;
-
-    // convert string value to interger
-    long num = strtol(value, &end, 10);
-
-    // validate if its digit or not
-    if (*end != '\0') {
-        printf(COLOR_RED "error: " COLOR_RESET "invalid value for flag \"%s\"\n", arg);
-        exit(1);
-    }
-    // check if the digit is negative or not
-    if (num < 0) {
-        printf(COLOR_RED "error: " COLOR_RESET "value cannot be negative for flag \"%s\"\n", arg);
-        exit(1);
-    }
-
-    return (unsigned int)num;
-}
-
 CliAction parseCliArgs(int argc, char *argv[], Config *config) {
     // iterate throught all arguments and parse them, make changes to config if config flags are present
     for (int i = 1; i < argc; i++) {
@@ -112,4 +90,24 @@ void cliPrintVersion() {
 
 void cliPrintLanguages() {
     printf("%s: supported languages\n", TARGET_NAME);
+}
+
+unsigned int _parse_arg_value(const char *value, const char *arg) {
+    char *end;
+
+    // convert string value to interger
+    long num = strtol(value, &end, 10);
+
+    // validate if its digit or not
+    if (*end != '\0') {
+        printf(COLOR_RED "error: " COLOR_RESET "invalid value for flag \"%s\"\n", arg);
+        exit(1);
+    }
+    // check if the digit is negative or not
+    if (num < 0) {
+        printf(COLOR_RED "error: " COLOR_RESET "value cannot be negative for flag \"%s\"\n", arg);
+        exit(1);
+    }
+
+    return (unsigned int)num;
 }

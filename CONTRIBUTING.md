@@ -16,13 +16,30 @@ To contribute:
 >
 > If you want guidance or discussion first, comment under the issue before opening a PR.
 
+## Build from source
+
+Requirements:
+- `gcc`, `clang`, or `msvc`
+- `cmake` >=3.25
+
+```sh
+cmake -B build
+cmake --build build
+./build/cstat
+```
+
+On Unix system you can also use:
+
+```sh
+chmod +x build.sh run.sh clean.sh
+./build.sh && ./run.sh
+```
+
 ## Pull request rules (mandatory)
 
-- Link the issue at the top  
-  (if no issue exists, create one first)
+- Link the issue at the top (if no issue exists, create one first)
 
-- Provide a `Summary` of your changes  
-  (at least 2 points)
+- Provide a `Summary` of your changes (at least 2 points)
 
 ```md
 Fixes: #1

@@ -23,9 +23,11 @@ typedef enum {
 /* global log toggle */
 extern bool CSTAT_DISPLAY_LOGS;
 
-/* MACROS */
+
+/* ===== MACROS ===== */
 
 /* explicit macro functions */
+// logging
 #define logError(...) _LOG(CSTAT_LOG_ERROR, __VA_ARGS__)
 #define logWarn(...) _LOG(CSTAT_LOG_WARNING, __VA_ARGS__)
 #define logSuccess(...) _LOG(CSTAT_LOG_SUCCESS, __VA_ARGS__)
@@ -35,10 +37,14 @@ extern bool CSTAT_DISPLAY_LOGS;
 #define __CURRENT_FILE_NAME__ (getFilenameFromPath(__FILE__))
 #define _LOG(type, ...) (_cstat_log(__TIME__, __CURRENT_FILE_NAME__, __func__, (LogType)type, __VA_ARGS__))
 
-/* FUNCTIONS */
+
+/* ===== FUNCTIONS ===== */
+
 // get available threads on the system
 unsigned int getAvailableThreads();
+
 const char *getFilenameFromPath(const char *filepath);
+
 
 /* internal/private functions */
 void _cstat_log(const char *time, const char *filename, const char *function, LogType type, const char *fmt, ...);
