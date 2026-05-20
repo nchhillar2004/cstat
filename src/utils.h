@@ -14,10 +14,10 @@
 #endif
 
 typedef enum {
-    ERROR,
-    WARN,
-    SUCCESS,
-    DEBUG
+    CSTAT_LOG_ERROR,
+    CSTAT_LOG_WARNING,
+    CSTAT_LOG_SUCCESS,
+    CSTAT_LOG_DEBUG
 } LogType;
 
 /* global log toggle */
@@ -26,10 +26,10 @@ extern bool CSTAT_DISPLAY_LOGS;
 /* MACROS */
 
 /* explicit macro functions */
-#define logError(...) _LOG(ERROR, __VA_ARGS__)
-#define logWarn(...) _LOG(WARN, __VA_ARGS__)
-#define logSuccess(...) _LOG(SUCCESS, __VA_ARGS__)
-#define logDebug(...) _LOG(DEBUG, __VA_ARGS__)
+#define logError(...) _LOG(CSTAT_LOG_ERROR, __VA_ARGS__)
+#define logWarn(...) _LOG(CSTAT_LOG_WARNING, __VA_ARGS__)
+#define logSuccess(...) _LOG(CSTAT_LOG_SUCCESS, __VA_ARGS__)
+#define logDebug(...) _LOG(CSTAT_LOG_DEBUG, __VA_ARGS__)
 
 /* internal macros */
 #ifdef _MSC_VER

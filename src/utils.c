@@ -38,16 +38,16 @@ void _cstat_log(const char *time, const char *filename, const char *function, Lo
 
     char *type_s;
     switch (type) {
-        case ERROR:
+        case CSTAT_LOG_ERROR:
             type_s = COLOR_RED "ERROR" COLOR_RESET;
             break;
-        case WARN:
+        case CSTAT_LOG_WARNING:
             type_s = COLOR_YELLOW "WARNING" COLOR_RESET;
             break;
-        case SUCCESS:
+        case CSTAT_LOG_SUCCESS:
             type_s = COLOR_GREEN "SUCCESS" COLOR_RESET;
             break;
-        case DEBUG:
+        case CSTAT_LOG_DEBUG:
             type_s = COLOR_BLUE "DEBUG" COLOR_RESET;
             break;
     }
