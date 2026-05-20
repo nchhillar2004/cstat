@@ -1,8 +1,7 @@
 #include "cli/cli.h"
 #include "config.h"
 
-static void runScan(Config *config) {
-}
+static void runScan(Config *config) {}
 
 int main(int argc, char *argv[]) {
     Config cstat_config;
