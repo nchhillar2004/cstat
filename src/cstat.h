@@ -6,6 +6,7 @@
 #ifndef cstat_h
 #define cstat_h
 
+/* global constants */
 #define TARGET_NAME "cstat"
 #define CSTAT_VERSION "1.0"
 
