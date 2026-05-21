@@ -1,3 +1,8 @@
+/*
+  config.h
+  cstat configurations, can be configured by users via cli or directly modifying cstat.conf
+*/
+
 #ifndef cstat_config_h
 #define cstat_config_h
 

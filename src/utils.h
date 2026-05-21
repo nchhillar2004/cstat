@@ -8,6 +8,7 @@
 
 #include <stdbool.h>
 #ifdef _WIN32
+    #define WIN32_LEAN_AND_MEAN
     #include <windows.h>
 #else
     #include <unistd.h>
@@ -35,7 +36,7 @@ extern bool CSTAT_DISPLAY_LOGS;
 
 /* internal macros */
 #define __CURRENT_FILE_NAME__ (getFilenameFromPath(__FILE__))
-#define _LOG(type, ...) (_cstat_log(__TIME__, __CURRENT_FILE_NAME__, __func__, (LogType)type, __VA_ARGS__))
+#define _LOG(type, ...) (_cstat_log(__CURRENT_FILE_NAME__, __func__, (LogType)type, __VA_ARGS__))
 
 
 /* ===== FUNCTIONS ===== */
@@ -47,6 +48,6 @@ const char *getFilenameFromPath(const char *filepath);
 
 
 /* internal/private functions */
-void _cstat_log(const char *time, const char *filename, const char *function, LogType type, const char *fmt, ...);
+void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...);
 
 #endif

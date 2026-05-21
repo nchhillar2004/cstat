@@ -1,3 +1,8 @@
+/*
+  cli.h
+  handle cli args, commands and flags. display help, version and languages.
+*/
+
 #ifndef cstat_cli_h
 #define cstat_cli_h
 
