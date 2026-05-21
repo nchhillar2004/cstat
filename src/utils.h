@@ -11,6 +11,8 @@
     #define WIN32_LEAN_AND_MEAN
     #include <windows.h>
 #else
+    #include <sys/resource.h>
+    #include <sys/time.h>
     #include <unistd.h>
 #endif
 
@@ -23,7 +25,6 @@ typedef enum {
 
 /* global log toggle */
 extern bool CSTAT_DISPLAY_LOGS;
-
 
 /* ===== MACROS ===== */
 
@@ -38,7 +39,6 @@ extern bool CSTAT_DISPLAY_LOGS;
 #define __CURRENT_FILE_NAME__ (getFilenameFromPath(__FILE__))
 #define _LOG(type, ...) (_cstat_log(__CURRENT_FILE_NAME__, __func__, (LogType)type, __VA_ARGS__))
 
-
 /* ===== FUNCTIONS ===== */
 
 // get available threads on the system
@@ -46,6 +46,7 @@ unsigned int getAvailableThreads();
 
 const char *getFilenameFromPath(const char *filepath);
 
+double getTime();
 
 /* internal/private functions */
 void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...);
