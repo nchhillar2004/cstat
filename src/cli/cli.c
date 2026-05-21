@@ -52,8 +52,8 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
     /* configuration validation and checks */
 
     // max file size cannot be greated than capped max file size
-    if (config->max_file_size > MAX_FILE_SIZE_CAP) {
-        printf(COLOR_RED "error: " COLOR_RESET "value cannot exceed the maximum cap of %dMB\n", MAX_FILE_SIZE_CAP);
+    if (config->max_file_size > CAP_FILE_SIZE) {
+        printf(COLOR_RED "error: " COLOR_RESET "value cannot exceed the maximum cap of %dMB\n", CAP_FILE_SIZE);
         exit(1);
     }
 
