@@ -2,10 +2,20 @@
 #include "config.h"
 #include "utils.h"
 #include "walker/dir_walker.h"
+#include <stdio.h>
 
 static void runScan(Config *config) {
-    if (walkDirectory(config->path, config))
-        logSuccess("directory scanning completed for \"%s\"", config->path);
+    double startTime = getTime();
+
+    WalkerStats stats = {0};
+    if (!walkDirectory(config->path, config, &stats)) {
+        logError("scan aborted");
+        return;
+    }    
+    logSuccess("directory scanning completed for \"%s\"", config->path);
+    printf("Found %ld directories and %ld files at \"%s\"\n", stats.dir, stats.files, config->path);
+    double endTime = getTime();
+    printf("Scan took %.4lfs\n", (double)(endTime - startTime));
 }
 
 int main(int argc, char *argv[]) {

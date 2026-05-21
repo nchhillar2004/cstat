@@ -8,6 +8,7 @@
 
 #include "config.h"
 #include <stdbool.h>
+#include <stdint.h>
 
 #ifdef _WIN32
     #define WIN32_LEAN_AND_MEAN
@@ -16,13 +17,17 @@
     #include <dirent.h>
 #endif
 
+typedef struct {
+    int64_t dir;
+    int64_t files;
+} WalkerStats;
+
 /* ===== MACROS ===== */
 
-
 /* ===== FUNCTIONS ===== */
-bool walkDirectory(const char *path, Config *config);
+bool walkDirectory(const char *path, Config *config, WalkerStats *stats);
 
-bool _walk_dir_posix(const char *path, Config *config);
-bool _walk_dir_windows(const char *path, Config *config);
+bool _walk_dir_posix(const char *path, Config *config, WalkerStats *stats);
+bool _walk_dir_windows(const char *path, Config *config, WalkerStats *stats);
 
 #endif

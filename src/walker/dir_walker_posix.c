@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
-bool _walk_dir_posix(const char *root, Config *config) {
+bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
     DIR *dir = NULL;
     dir = opendir(root);
     if (dir == NULL) {
@@ -31,11 +31,14 @@ bool _walk_dir_posix(const char *root, Config *config) {
             continue;
         }
 
-        // TODO: DT_DIR is not a part of C standard, replace 
-        if (entry->d_type == DT_DIR)
-            _walk_dir_posix(path, config);
-        else // TODO: process file (detect language, count lines, etc...)
+        // TODO: DT_DIR is not a part of C standard, replace
+        if (entry->d_type == DT_DIR) {
+            _walk_dir_posix(path, config, stats);
+            stats->dir += 1;
+        } else if (entry->d_type == DT_REG) { // TODO: process file (detect language, count lines, etc...)
             logDebug("scanning file \"%s\"", path);
+            stats->files += 1;
+        }
     }
 
     if (closedir(dir) == -1) {
