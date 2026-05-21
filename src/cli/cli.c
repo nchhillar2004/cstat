@@ -81,7 +81,19 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
 }
 
 void cliPrintHelp() {
-    printf("%s: help\n", TARGET_NAME);
+    printf("%s - code statistics analyzer\n\n", TARGET_NAME);
+    printf("Usage: %s [command] [options] [path]\n\n", TARGET_NAME);
+    
+    printf("Commands:\n");
+    printf("    -h    --help              Print help\n");
+    printf("    -v    --version           Print version\n");
+    printf("    -l    --languages         List supported languages\n\n");
+    
+    printf("Config Options:\n");
+    printf("                 [path]                        Path to scan (default \".\")\n");
+    printf("    -t          --threads [threads]            Number of worker threads (default 8)\n");
+    printf("    -max        --max-file-size [size in MB]   Max file size to scan (max 1024 MB)\n");
+    printf("    -min        --min-file-size [size in MB]   Min file size to scan\n");
 }
 
 void cliPrintVersion() {
