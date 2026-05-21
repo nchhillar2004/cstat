@@ -1,7 +1,12 @@
 #include "cli/cli.h"
 #include "config.h"
+#include "utils.h"
+#include "walker/dir_walker.h"
 
-static void runScan(Config *config) {}
+static void runScan(Config *config) {
+    if (walkDirectory(config->path, config))
+        logSuccess("directory scanning completed for \"%s\"", config->path);
+}
 
 int main(int argc, char *argv[]) {
     Config cstat_config;
