@@ -93,7 +93,14 @@ void cliPrintHelp() {
     printf("                 [path]                        Path to scan (default \".\")\n");
     printf("    -t          --threads [threads]            Number of worker threads (default 8)\n");
     printf("    -max        --max-file-size [size in MB]   Max file size to scan (max 1024 MB)\n");
-    printf("    -min        --min-file-size [size in MB]   Min file size to scan\n");
+    printf("    -min        --min-file-size [size in MB]   Min file size to scan\n\n");
+
+    printf("Toggle Flags:\n");
+    printf("    -ni         --no-ignore                    Disable all ignore rules\n");
+    printf("    -ng         --no-gitignore                 Disable parsing of .gitignore\n");
+    printf("    -nc         --no-cstatignore               Disable parsing of .cstatignore\n");
+    printf("    -c          --csv                          Output results in CSV format\n");
+    printf("    -d          --debug                        Enable debug logging\n");
 }
 
 void cliPrintVersion() {
