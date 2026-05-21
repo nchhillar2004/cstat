@@ -46,7 +46,7 @@ const char *getFilenameFromPath(const char *filepath) {
     return separator == NULL ? filepath : separator + 1;
 }
 
-void _cstat_log(const char *time, const char *filename, const char *function, LogType type, const char *fmt, ...) {
+void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...) {
     if (!CSTAT_DISPLAY_LOGS)
         return;
 
@@ -68,7 +68,7 @@ void _cstat_log(const char *time, const char *filename, const char *function, Lo
             break;
     }
 
-    printf("[%s %s %s::%s()] ", time, type_s, filename, function);
+    printf("[%s %s::%s()] ", type_s, filename, function);
 
     va_start(args, fmt);
     vprintf(fmt, args);
