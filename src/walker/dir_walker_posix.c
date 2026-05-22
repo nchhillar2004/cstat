@@ -1,8 +1,7 @@
+#ifndef _WIN32
 #include "cstat.h"
 #include "utils.h"
 #include "walker/dir_walker.h"
-#include <bits/types.h>
-#include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdbool.h>
@@ -68,3 +67,4 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
 
     return true;
 }
+#endif

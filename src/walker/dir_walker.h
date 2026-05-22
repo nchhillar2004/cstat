@@ -14,6 +14,7 @@
     #define WIN32_LEAN_AND_MEAN
     #include <windows.h>
 #else
+    #include <bits/types.h>
     #include <dirent.h>
 #endif
 

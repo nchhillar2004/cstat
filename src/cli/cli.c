@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <threads.h>
-#include <unistd.h>
 
 CliAction parseCliArgs(int argc, char *argv[], Config *config) {
     // iterate throught all arguments and parse them, make changes to config if config flags are present
