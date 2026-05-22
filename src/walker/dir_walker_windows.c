@@ -1,10 +1,10 @@
+#ifdef _WIN32
 #include "cstat.h"
 #include "utils.h"
 #include "walker/dir_walker.h"
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _WIN32
 bool _walk_dir_windows(const char *root, Config *config, WalkerStats *stats) {
     char buffer[CAP_SCAN_PATH_LEN];
 
@@ -13,7 +13,7 @@ bool _walk_dir_windows(const char *root, Config *config, WalkerStats *stats) {
         logError("Path too short");
         return false;
     }
-    if (n > CAP_SCAN_PATH_LEN) {
+    if (n >= CAP_SCAN_PATH_LEN) {
         logError("Path too long");
         return false;
     }
@@ -37,14 +37,14 @@ bool _walk_dir_windows(const char *root, Config *config, WalkerStats *stats) {
             logError("Path too short");
             continue;
         }
-        if (n > CAP_SCAN_PATH_LEN) {
+        if (n >= CAP_SCAN_PATH_LEN) {
             logError("Path too long");
             continue;
         }
 
         if (entry.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-            _walk_dir_windows(path, config, stats);
-            stats->dir += 1;
+            if(_walk_dir_windows(path, config, stats))
+                stats->dir += 1;
         } else {
             logDebug("scanning file \"%s\"", path);
             stats->files += 1;

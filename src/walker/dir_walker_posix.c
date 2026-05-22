@@ -30,20 +30,20 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
             logError("Path too short");
             continue;
         }
-        if (n > CAP_SCAN_PATH_LEN) {
+        if (n >= CAP_SCAN_PATH_LEN) {
             logError("Path too long");
             continue;
         }
 
         if (entry->d_type == DT_DIR) {
-            _walk_dir_posix(path, config, stats);
-            stats->dir += 1;
+            if (_walk_dir_posix(path, config, stats))
+                stats->dir += 1;
         } else if (entry->d_type == DT_REG) { // TODO: process file (detect language, count lines, etc...)
             logDebug("scanning file \"%s\"", path);
             stats->files += 1;
         }
         // all filesystems does not support DT_DIR so d_type might return DT_UNKNOWN
-        else if (entry->d_type == DT_UNKNOWN){ // use fstatat() in that case
+        else if (entry->d_type == DT_UNKNOWN) { // use fstatat() in that case
             struct stat stbuf;
 
             if (fstatat(dirfd(dir), entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) == -1) {
@@ -52,8 +52,8 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
             }
 
             if (S_ISDIR(stbuf.st_mode)) {
-                _walk_dir_posix(path, config, stats);
-                stats->dir += 1;
+                if (_walk_dir_posix(path, config, stats))
+                    stats->dir += 1;
             } else if (S_ISREG(stbuf.st_mode)) {
                 logDebug("scanning file \"%s\"", path);
                 stats->files += 1;
