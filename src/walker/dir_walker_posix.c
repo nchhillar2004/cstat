@@ -23,7 +23,6 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
 
         // TODO: check for .ignore excluded directories
 
-        // TODO: is this CAP valid ?!
         char path[CAP_SCAN_PATH_LEN];
         int n = snprintf(path, CAP_SCAN_PATH_LEN, "%s/%s", root, entry->d_name);
         if (n < 0 || n > CAP_SCAN_PATH_LEN) {
@@ -31,8 +30,8 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
             continue;
         }
 
-        // TODO: DT_DIR is not a part of C standard, replace
-        if (entry->d_type == DT_DIR) {
+        // TODO: DT_DIR is not supported by all POSIX systems
+        if (entry->d_type == DT_DIR) { // d_type might be DT_UNKNOWN, so use fstatat() in that case
             _walk_dir_posix(path, config, stats);
             stats->dir += 1;
         } else if (entry->d_type == DT_REG) { // TODO: process file (detect language, count lines, etc...)
