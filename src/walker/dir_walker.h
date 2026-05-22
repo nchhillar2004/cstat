@@ -18,8 +18,8 @@
 #endif
 
 typedef struct {
-    int64_t dir;
-    int64_t files;
+    uint64_t dir;
+    uint64_t files;
 } WalkerStats;
 
 /* ===== MACROS ===== */
