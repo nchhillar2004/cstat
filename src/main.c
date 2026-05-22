@@ -13,7 +13,8 @@ static void runScan(Config *config) {
         return;
     }    
     logSuccess("directory scanning completed for \"%s\"", config->path);
-    printf("Found %ld directories and %ld files at \"%s\"\n", stats.dir, stats.files, config->path);
+
+    printf("Found %lu directories and %lu files at \"%s\"\n", stats.dir, stats.files, config->path);
     double endTime = getTime();
     printf("Scan took %.4lfs\n", (double)(endTime - startTime));
 }

@@ -4,9 +4,11 @@
 #include <bits/types.h>
 #include <dirent.h>
 #include <errno.h>
+#include <fcntl.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/stat.h>
 
 bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
     DIR *dir = NULL;
@@ -23,21 +25,40 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
 
         // TODO: check for .ignore excluded directories
 
-        // TODO: is this CAP valid ?!
         char path[CAP_SCAN_PATH_LEN];
         int n = snprintf(path, CAP_SCAN_PATH_LEN, "%s/%s", root, entry->d_name);
-        if (n < 0 || n > CAP_SCAN_PATH_LEN) {
+        if (n <= 0) {
+            logError("Path too short");
+            continue;
+        }
+        if (n > CAP_SCAN_PATH_LEN) {
             logError("Path too long");
             continue;
         }
 
-        // TODO: DT_DIR is not a part of C standard, replace
         if (entry->d_type == DT_DIR) {
             _walk_dir_posix(path, config, stats);
             stats->dir += 1;
         } else if (entry->d_type == DT_REG) { // TODO: process file (detect language, count lines, etc...)
             logDebug("scanning file \"%s\"", path);
             stats->files += 1;
+        }
+        // all filesystems does not support DT_DIR so d_type might return DT_UNKNOWN
+        else if (entry->d_type == DT_UNKNOWN){ // use fstatat() in that case
+            struct stat stbuf;
+
+            if (fstatat(dirfd(dir), entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) == -1) {
+                logError("fstatat failed for \"%s\": %s", path, strerror(errno));
+                continue;
+            }
+
+            if (S_ISDIR(stbuf.st_mode)) {
+                _walk_dir_posix(path, config, stats);
+                stats->dir += 1;
+            } else if (S_ISREG(stbuf.st_mode)) {
+                logDebug("scanning file \"%s\"", path);
+                stats->files += 1;
+            }
         }
     }
 

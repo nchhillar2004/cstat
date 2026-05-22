@@ -24,7 +24,7 @@
 // maximum languages for a project/codebase to scan
 #define CAP_LANGUAGES 30   // cstat will only show upto 30 languages per scan
 #define CAP_FILE_SIZE 1024 // user cannot configure to scan files above this size (in MB)
-#define CAP_SCAN_PATH_LEN 1024
+#define CAP_SCAN_PATH_LEN 2048 // max dir scan path size allowed
 
 /* defaults */
 #define DEFAULT_SCAN_PATH "."
