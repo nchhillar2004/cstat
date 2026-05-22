@@ -2,6 +2,7 @@
 #include "config.h"
 #include "utils.h"
 #include "walker/dir_walker.h"
+#include <inttypes.h>
 #include <stdio.h>
 
 static void runScan(Config *config) {
@@ -14,7 +15,7 @@ static void runScan(Config *config) {
     }    
     logSuccess("directory scanning completed for \"%s\"", config->path);
 
-    printf("Found %lu directories and %lu files at \"%s\"\n", stats.dir, stats.files, config->path);
+    printf("Found %"PRIu64" directories and %"PRIu64" files at \"%s\"\n", stats.dir, stats.files, config->path);
     double endTime = getTime();
     printf("Scan took %.4lfs\n", (double)(endTime - startTime));
 }
