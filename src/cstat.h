@@ -34,14 +34,16 @@ static const char *CSTAT_DEFAULT_EXCLUDED_DIRS[] = {
     ".git",        "node_modules",  "vendor", "packages", "build",     "dist",       ".cache", ".out",
     "out",         ".vscode",       ".idea",  "target",   "bin",       "obj",        "Debug",  "Release",
     "__pycache__", ".pytest_cache", ".next",  ".tmp",     "temp",      ".terraform", ".venv",  "venv",
-    ".gradle",     ".cargo",        ".maven", ".sv",      ".DS_Store",
+    ".gradle",     ".cargo",        ".maven", ".sv",      ".DS_Store", "logs",       "Logs",
 };
 static const char *CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[] = {
     "bin", "img", "iso", "db",    "dat", "exe",  "dll",    "so",      "o",         "out",
-    "a",   "obj", "lib", "class", "pyc", "lock", "min.js", "min.css", "bundle.js",
+    "a",   "obj", "lib", "class", "pyc", "lock", "min.js", "min.css", "bundle.js", "etl",
 };
 
 static const size_t EXCLUDED_DIR_COUNT = sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS) / sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS[0]);
+static const size_t EXCLUDED_EXT_COUNT =
+    sizeof(CSTAT_DEFAULT_EXCLUDED_EXTENSIONS) / sizeof(CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[0]);
 
 // max/min file size to scan (in MB)
 #define DEFAULT_MAX_FILE_SIZE 10
