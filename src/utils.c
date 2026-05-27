@@ -1,6 +1,8 @@
 #include "utils.h"
+#include "config.h"
 #include "cstat.h"
 #include <stdarg.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -59,6 +61,17 @@ double getTime() {
     gettimeofday(&t, &tzp);
     return t.tv_sec + t.tv_usec * 1e-6;
 #endif
+}
+
+bool isIgnoredDir(const char *dirname) {
+    for (size_t i = 0; i < EXCLUDED_DIR_COUNT; i++) {
+        if (strcmp(dirname, CSTAT_DEFAULT_EXCLUDED_DIRS[i]) == 0)
+            return true;
+    }
+    return false;
+}
+
+void parseGitignore(int fd, const char *path) {
 }
 
 void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...) {

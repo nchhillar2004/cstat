@@ -7,11 +7,11 @@
 #define cstat_h
 
 /* global constants */
+#include <stddef.h>
 #define TARGET_NAME "cstat"
 #define CSTAT_VERSION "1.0"
 
 #define CSTAT_CONFIG_FILE "cstat.conf"
-#define CSTAT_IGNORE_FILE ".cstatignore"
 #define GIT_IGNORE_FILE ".gitignore"
 
 #define COLOR_RED "\033[0;31m"
@@ -22,12 +22,26 @@
 
 /* max value cap */
 // maximum languages for a project/codebase to scan
-#define CAP_LANGUAGES 30   // cstat will only show upto 30 languages per scan
-#define CAP_FILE_SIZE 1024 // user cannot configure to scan files above this size (in MB)
+#define CAP_LANGUAGES 30       // cstat will only show upto 30 languages per scan
+#define CAP_FILE_SIZE 1024     // user cannot configure to scan files above this size (in MB)
 #define CAP_SCAN_PATH_LEN 2048 // max dir scan path size allowed
 
 /* defaults */
 #define DEFAULT_SCAN_PATH "."
+
+// TODO: add more patterns to exclude
+static const char *CSTAT_DEFAULT_EXCLUDED_DIRS[] = {
+    ".git",        "node_modules",  "vendor", "packages", "build",     "dist",       ".cache", ".out",
+    "out",         ".vscode",       ".idea",  "target",   "bin",       "obj",        "Debug",  "Release",
+    "__pycache__", ".pytest_cache", ".next",  ".tmp",     "temp",      ".terraform", ".venv",  "venv",
+    ".gradle",     ".cargo",        ".maven", ".sv",      ".DS_Store",
+};
+static const char *CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[] = {
+    "bin", "img", "iso", "db",    "dat", "exe",  "dll",    "so",      "o",         "out",
+    "a",   "obj", "lib", "class", "pyc", "lock", "min.js", "min.css", "bundle.js",
+};
+
+static const size_t EXCLUDED_DIR_COUNT = sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS) / sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS[0]);
 
 // max/min file size to scan (in MB)
 #define DEFAULT_MAX_FILE_SIZE 10

@@ -16,6 +16,8 @@
 #else
     #include <bits/types.h>
     #include <dirent.h>
+    #include <fcntl.h>
+    #include <unistd.h>
 #endif
 
 typedef struct {
@@ -28,7 +30,6 @@ typedef struct {
 /* ===== FUNCTIONS ===== */
 bool walkDirectory(const char *path, Config *config, WalkerStats *stats);
 
-bool _walk_dir_linux(const char *path, Config *config, WalkerStats *stats);
 bool _walk_dir_posix(const char *path, Config *config, WalkerStats *stats);
 bool _walk_dir_windows(const char *path, Config *config, WalkerStats *stats);
 
