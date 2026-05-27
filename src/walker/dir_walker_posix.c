@@ -3,8 +3,6 @@
 #include "utils.h"
 #include "walker/dir_walker.h"
 #include <errno.h>
-#include <fcntl.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -17,12 +15,21 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
         return false;
     }
 
+    int fd = dirfd(dir);
+
+    /*
+    if (config->use_git_ignore) {
+        int gitfd = openat(fd, GIT_IGNORE_FILE, O_RDONLY | O_CLOEXEC);
+        if (gitfd >= 0) {
+            parseGitignore(gitfd, root);
+            close(gitfd);
+        }
+    }*/
+
     struct dirent *entry = NULL;
     while ((entry = readdir(dir)) != NULL) {
         if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
             continue;
-
-        // TODO: check for .ignore excluded directories
 
         char path[CAP_SCAN_PATH_LEN];
         int n = snprintf(path, CAP_SCAN_PATH_LEN, "%s/%s", root, entry->d_name);
@@ -36,26 +43,32 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
         }
 
         if (entry->d_type == DT_DIR) {
-            if (_walk_dir_posix(path, config, stats))
+            if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
+                logDebug("Ignored \"%s\"/", entry->d_name);
+                continue;
+            } else if (_walk_dir_posix(path, config, stats))
                 stats->dir += 1;
-        } else if (entry->d_type == DT_REG) { // TODO: process file (detect language, count lines, etc...)
-            logDebug("scanning file \"%s\"", path);
+        } else if (entry->d_type == DT_REG) {
+            // TODO process file
             stats->files += 1;
         }
         // all filesystems does not support DT_DIR so d_type might return DT_UNKNOWN
         else if (entry->d_type == DT_UNKNOWN) { // use fstatat() in that case
             struct stat stbuf;
 
-            if (fstatat(dirfd(dir), entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) == -1) {
+            if (fstatat(fd, entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) == -1) {
                 logError("fstatat failed for \"%s\": %s", path, strerror(errno));
                 continue;
             }
 
             if (S_ISDIR(stbuf.st_mode)) {
-                if (_walk_dir_posix(path, config, stats))
+                if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
+                    logDebug("Ignored \"%s\"/", entry->d_name);
+                    continue;
+                } else if (_walk_dir_posix(path, config, stats))
                     stats->dir += 1;
             } else if (S_ISREG(stbuf.st_mode)) {
-                logDebug("scanning file \"%s\"", path);
+                // TODO: process file
                 stats->files += 1;
             }
         }

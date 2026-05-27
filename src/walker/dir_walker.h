@@ -16,16 +16,16 @@
 #else
     #include <bits/types.h>
     #include <dirent.h>
+    #include <fcntl.h>
+    #include <unistd.h>
 #endif
 
 typedef struct {
     uint64_t dir;
     uint64_t files;
 } WalkerStats;
-  
-    
-/* ===== MACROS ===== */
 
+/* ===== MACROS ===== */
 
 /* ===== FUNCTIONS ===== */
 bool walkDirectory(const char *path, Config *config, WalkerStats *stats);

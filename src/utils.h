@@ -48,6 +48,9 @@ const char *getFilenameFromPath(const char *filepath);
 
 double getTime();
 
+bool isIgnoredDir(const char *dirname);
+void parseGitignore(int fd, const char *path);
+
 /* internal/private functions */
 void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...);
 

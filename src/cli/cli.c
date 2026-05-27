@@ -95,9 +95,9 @@ void cliPrintHelp() {
     printf("    -min        --min-file-size [size in MB]   Min file size to scan\n\n");
 
     printf("Toggle Flags:\n");
-    printf("    -ni         --no-ignore                    Disable all ignore rules\n");
+    printf("    -ni         --no-ignore                    Disable all ignore rules (--no-gitignore & --no-cstatignore)\n");
     printf("    -ng         --no-gitignore                 Disable parsing of .gitignore\n");
-    printf("    -nc         --no-cstatignore               Disable parsing of .cstatignore\n");
+    printf("    -nc         --no-cstatignore               Disable use of default cstat ignored patterns\n");
     printf("    -c          --csv                          Output results in CSV format\n");
     printf("    -d          --debug                        Enable debug logging\n");
 }
