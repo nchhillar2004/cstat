@@ -44,7 +44,7 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
 
         if (entry->d_type == DT_DIR) {
             if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
-                logDebug("Ignored \"%s\"/", entry->d_name);
+                logDebug("Ignored dir \"%s/\"", entry->d_name);
                 continue;
             } else if (_walk_dir_posix(path, config, stats))
                 stats->dir += 1;
@@ -66,7 +66,7 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
 
             if (S_ISDIR(stbuf.st_mode)) {
                 if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
-                    logDebug("Ignored \"%s\"/", entry->d_name);
+                    logDebug("Ignored dir \"%s/\"", entry->d_name);
                     continue;
                 } else if (_walk_dir_posix(path, config, stats))
                     stats->dir += 1;

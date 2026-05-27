@@ -9,7 +9,7 @@
 #include <stdbool.h>
 
 typedef struct {
-    char* path;
+    char *path;
 
     unsigned int max_file_size;
     unsigned int min_file_size;
@@ -24,7 +24,6 @@ typedef struct {
 
     bool display_logs;
 } Config;
-
 
 /* ===== FUNCTIONS ===== */
 
