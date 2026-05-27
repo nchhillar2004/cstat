@@ -40,7 +40,7 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
             config->csv_output = true;
         else if (strcmp(arg, "-d") == 0 || strcmp(arg, "--debug") == 0)
             config->display_logs = CSTAT_DISPLAY_LOGS = true;
-        
+
         // else everything is path
         // TODO: verify if path is correct, file or directory exists
         // only get valid path, else print 'error: invalid command or flag'
@@ -62,6 +62,10 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
         exit(1);
     }
 
+    // convert MB to bytes
+    config->min_file_size *= 1024*1024;
+    config->max_file_size *= 1024*1024;
+
     // if user selects --no-ignore then disable use of both .gitignore and .cstatignore
     if (config->use_ignore == false) {
         config->use_git_ignore = false;
@@ -82,20 +86,22 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
 void cliPrintHelp() {
     printf("%s - code statistics analyzer\n\n", TARGET_NAME);
     printf("Usage: %s [command] [options] [path]\n\n", TARGET_NAME);
-    
+
     printf("Commands:\n");
     printf("    -h    --help              Print help\n");
     printf("    -v    --version           Print version\n");
     printf("    -l    --languages         List supported languages\n\n");
-    
+
     printf("Config Options:\n");
     printf("                 [path]                        Path to scan (default \".\")\n");
-    printf("    -t          --threads [threads]            Number of worker threads (default 8)\n");
-    printf("    -max        --max-file-size [size in MB]   Max file size to scan (max 1024 MB)\n");
+    printf("    -t          --threads [threads]            Number of worker threads (default %d)\n",
+           DEFAULT_WORKER_THREADS);
+    printf("    -max        --max-file-size [size in MB]   Max file size to scan (max %d MB)\n", CAP_FILE_SIZE);
     printf("    -min        --min-file-size [size in MB]   Min file size to scan\n\n");
 
     printf("Toggle Flags:\n");
-    printf("    -ni         --no-ignore                    Disable all ignore rules (--no-gitignore & --no-cstatignore)\n");
+    printf("    -ni         --no-ignore                    Disable all ignore rules (--no-gitignore & "
+           "--no-cstatignore)\n");
     printf("    -ng         --no-gitignore                 Disable parsing of .gitignore\n");
     printf("    -nc         --no-cstatignore               Disable use of default cstat ignored patterns\n");
     printf("    -c          --csv                          Output results in CSV format\n");

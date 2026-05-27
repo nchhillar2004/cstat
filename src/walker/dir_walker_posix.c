@@ -71,6 +71,9 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
                 } else if (_walk_dir_posix(path, config, stats))
                     stats->dir += 1;
             } else if (S_ISREG(stbuf.st_mode)) {
+                // check for file size
+                if (stbuf.st_size < config->min_file_size || stbuf.st_size > config->max_file_size)
+                    continue;
                 if (isIgnoredExt(entry->d_name))
                     continue;
 
