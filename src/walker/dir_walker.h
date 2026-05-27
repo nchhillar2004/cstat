@@ -22,13 +22,14 @@ typedef struct {
     uint64_t dir;
     uint64_t files;
 } WalkerStats;
-
+  
+    
 /* ===== MACROS ===== */
+
 
 /* ===== FUNCTIONS ===== */
 bool walkDirectory(const char *path, Config *config, WalkerStats *stats);
 
-bool _walk_dir_linux(const char *path, Config *config, WalkerStats *stats);
 bool _walk_dir_posix(const char *path, Config *config, WalkerStats *stats);
 bool _walk_dir_windows(const char *path, Config *config, WalkerStats *stats);
 
