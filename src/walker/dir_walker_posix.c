@@ -49,6 +49,9 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
             } else if (_walk_dir_posix(path, config, stats))
                 stats->dir += 1;
         } else if (entry->d_type == DT_REG) {
+            if (isIgnoredExt(entry->d_name))
+                continue;
+
             // TODO process file
             stats->files += 1;
         }
@@ -68,6 +71,9 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
                 } else if (_walk_dir_posix(path, config, stats))
                     stats->dir += 1;
             } else if (S_ISREG(stbuf.st_mode)) {
+                if (isIgnoredExt(entry->d_name))
+                    continue;
+
                 // TODO: process file
                 stats->files += 1;
             }

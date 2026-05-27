@@ -48,6 +48,8 @@ const char *getFilenameFromPath(const char *filepath);
 
 double getTime();
 
+bool hasExtension(const char* path, const char* ext);
+bool isIgnoredExt(const char *filepath);
 bool isIgnoredDir(const char *dirname);
 void parseGitignore(int fd, const char *path);
 

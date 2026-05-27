@@ -1,5 +1,4 @@
 #include "utils.h"
-#include "config.h"
 #include "cstat.h"
 #include <stdarg.h>
 #include <stddef.h>
@@ -61,6 +60,24 @@ double getTime() {
     gettimeofday(&t, &tzp);
     return t.tv_sec + t.tv_usec * 1e-6;
 #endif
+}
+
+bool hasExtension(const char *path, const char *ext) {
+    const char *dot = strrchr(path, '.');
+
+    if (dot == NULL) {
+        return false;
+    }
+
+    return strcmp(dot + 1, ext) == 0;
+}
+
+bool isIgnoredExt(const char *filepath) {
+    for (size_t i = 0; i < EXCLUDED_EXT_COUNT; i++) {
+        if (hasExtension(filepath, CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[i]))
+            return true;
+    }
+    return false;
 }
 
 bool isIgnoredDir(const char *dirname) {
