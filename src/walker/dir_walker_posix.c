@@ -7,6 +7,8 @@
 #include <string.h>
 #include <sys/stat.h>
 
+GitIgnore gitIgnore_s = {0};
+
 bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
     DIR *dir = NULL;
     dir = opendir(root);
@@ -17,14 +19,13 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
 
     int fd = dirfd(dir);
 
-    /*
     if (config->use_git_ignore) {
         int gitfd = openat(fd, GIT_IGNORE_FILE, O_RDONLY | O_CLOEXEC);
         if (gitfd >= 0) {
-            parseGitignore(gitfd, root);
+            parseGitIgnore(&gitIgnore_s, gitfd, root);
             close(gitfd);
         }
-    }*/
+    }
 
     struct dirent *entry = NULL;
     while ((entry = readdir(dir)) != NULL) {
@@ -42,31 +43,34 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
             continue;
         }
 
+        // faster than fstatat
+        // but we can't get file size
         if (entry->d_type == DT_DIR) {
             if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
-                logDebug("Ignored dir \"%s/\"", entry->d_name);
+                // logDebug("Ignored dir \"%s/\"", entry->d_name);
                 continue;
             } else if (_walk_dir_posix(path, config, stats))
                 stats->dir += 1;
         } else if (entry->d_type == DT_REG) {
+            // TODO: filter files based on size without fstatat
             if (isIgnoredExt(entry->d_name))
                 continue;
-
             // TODO process file
             stats->files += 1;
         }
+
         // all filesystems does not support DT_DIR so d_type might return DT_UNKNOWN
         else if (entry->d_type == DT_UNKNOWN) { // use fstatat() in that case
             struct stat stbuf;
 
-            if (fstatat(fd, entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) == -1) {
+            if (fstatat(fd, entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) != 0) {
                 logError("fstatat failed for \"%s\": %s", path, strerror(errno));
                 continue;
             }
 
             if (S_ISDIR(stbuf.st_mode)) {
                 if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
-                    logDebug("Ignored dir \"%s/\"", entry->d_name);
+                    // logDebug("Ignored dir \"%s/\"", entry->d_name);
                     continue;
                 } else if (_walk_dir_posix(path, config, stats))
                     stats->dir += 1;

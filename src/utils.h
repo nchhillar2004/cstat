@@ -23,6 +23,17 @@ typedef enum {
     CSTAT_LOG_DEBUG
 } LogType;
 
+typedef struct {
+    char **items;
+    size_t size;
+    size_t capacity;
+} DynamicArray;
+
+typedef struct {
+    DynamicArray ignoredDir;
+    DynamicArray ignoredExt;
+} GitIgnore;
+
 /* global log toggle */
 extern bool CSTAT_DISPLAY_LOGS;
 
@@ -48,10 +59,13 @@ const char *getFilenameFromPath(const char *filepath);
 
 double getTime();
 
-bool hasExtension(const char* path, const char* ext);
+bool hasExtension(const char *path, const char *ext);
 bool isIgnoredExt(const char *filepath);
 bool isIgnoredDir(const char *dirname);
-void parseGitignore(int fd, const char *path);
+void parseGitIgnore(GitIgnore *gitIgnore, int fd, const char *path);
+
+void push(DynamicArray *arr, const char *val);
+int find(DynamicArray *arr, const char *val);
 
 /* internal/private functions */
 void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...);

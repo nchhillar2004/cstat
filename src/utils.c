@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 bool CSTAT_DISPLAY_LOGS = DEFAULT_DISPLAY_LOGS;
@@ -88,7 +89,24 @@ bool isIgnoredDir(const char *dirname) {
     return false;
 }
 
-void parseGitignore(int fd, const char *path) {
+// TODO: implement this function
+void parseGitIgnore(GitIgnore *gitIgnore, int fd, const char *path) {
+}
+
+void push(DynamicArray *arr, const char *value) {
+    if (arr->size >= arr->capacity) {
+        arr->capacity = arr->capacity ? arr->capacity * 2 : 64;
+        arr->items = realloc(arr->items, arr->capacity * sizeof(*arr->items));
+    }
+    arr->items[arr->size++] = strdup(value);
+}
+
+int find(DynamicArray *arr, const char *val) {
+    for (int i = 0; i < arr->size; i++) {
+        if (strcmp(arr->items[i], val) == 0)
+            return i;
+    }
+    return -1;
 }
 
 void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...) {
