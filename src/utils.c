@@ -66,9 +66,8 @@ double getTime() {
 bool hasExtension(const char *path, const char *ext) {
     const char *dot = strrchr(path, '.');
 
-    if (dot == NULL) {
+    if (dot == NULL)
         return false;
-    }
 
     return strcmp(dot + 1, ext) == 0;
 }
@@ -89,7 +88,7 @@ bool isIgnoredDir(const char *dirname) {
     return false;
 }
 
-// TODO: implement this function
+// TODO
 void parseGitIgnore(GitIgnore *gitIgnore, int fd, const char *path) {
 }
 

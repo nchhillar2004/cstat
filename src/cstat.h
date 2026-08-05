@@ -35,7 +35,7 @@
 
 // TODO: add more patterns to exclude
 static const char *CSTAT_DEFAULT_EXCLUDED_DIRS[] = {
-    ".git",  "node_modules", "vendor",      "packages",      "build",   "dist",    ".cache",
+    ".git",  "node_modules", "vendor",      "packages",      "build", "_build",   "dist",    ".cache",
     ".out",  "out",          ".vscode",     ".idea",         "target",  "bin",     "obj",
     "Debug", "Release",      "__pycache__", ".pytest_cache", ".next",   ".tmp",    "tmp",
     "temp",  ".terraform",   ".venv",       "venv",          ".gradle", ".cargo",  ".maven",

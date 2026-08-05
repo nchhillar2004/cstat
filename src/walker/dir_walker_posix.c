@@ -9,6 +9,24 @@
 
 GitIgnore gitIgnore_s = {0};
 
+unsigned char _get_dtype(int fd, struct dirent *e) {
+    unsigned char dtype = e->d_type;
+
+    if (dtype != DT_UNKNOWN) 
+        return dtype;
+
+    struct stat st;
+
+    if (fstatat(fd, e->d_name, &st, AT_SYMLINK_NOFOLLOW) == 0) {
+        if (S_ISREG(st.st_mode))
+            dtype = DT_REG;
+        else if (S_ISDIR(st.st_mode))
+            dtype = DT_DIR;
+    }
+
+    return dtype;
+}
+
 bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
     DIR *dir = NULL;
     dir = opendir(root);
@@ -43,47 +61,22 @@ bool _walk_dir_posix(const char *root, Config *config, WalkerStats *stats) {
             continue;
         }
 
-        // faster than fstatat
-        // but we can't get file size
-        if (entry->d_type == DT_DIR) {
+        unsigned char dtype = _get_dtype(fd, entry);
+
+        if (dtype == DT_REG) {
+            // TODO: filter files based on size
+            if (isIgnoredExt(entry->d_name)) {
+                stats->filesIgnored += 1;
+                continue;
+            }
+            // TODO process file
+            stats->files += 1;
+        } else if (dtype == DT_DIR) {
             if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
-                // logDebug("Ignored dir \"%s/\"", entry->d_name);
+                stats->dirIgnored += 1;
                 continue;
             } else if (_walk_dir_posix(path, config, stats))
                 stats->dir += 1;
-        } else if (entry->d_type == DT_REG) {
-            // TODO: filter files based on size without fstatat
-            if (isIgnoredExt(entry->d_name))
-                continue;
-            // TODO process file
-            stats->files += 1;
-        }
-
-        // all filesystems does not support DT_DIR so d_type might return DT_UNKNOWN
-        else if (entry->d_type == DT_UNKNOWN) { // use fstatat() in that case
-            struct stat stbuf;
-
-            if (fstatat(fd, entry->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) != 0) {
-                logError("fstatat failed for \"%s\": %s", path, strerror(errno));
-                continue;
-            }
-
-            if (S_ISDIR(stbuf.st_mode)) {
-                if (config->use_cstat_ignore && isIgnoredDir(entry->d_name)) {
-                    // logDebug("Ignored dir \"%s/\"", entry->d_name);
-                    continue;
-                } else if (_walk_dir_posix(path, config, stats))
-                    stats->dir += 1;
-            } else if (S_ISREG(stbuf.st_mode)) {
-                // check for file size
-                if (stbuf.st_size < config->min_file_size || stbuf.st_size > config->max_file_size)
-                    continue;
-                if (isIgnoredExt(entry->d_name))
-                    continue;
-
-                // TODO: process file
-                stats->files += 1;
-            }
         }
     }
 
