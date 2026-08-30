@@ -22,23 +22,20 @@
 
 /* max value cap */
 // maximum languages for a project/codebase to scan
-#define CAP_LANGUAGES 30  // cstat will only show upto 30 languages per scan
-#define CAP_FILE_SIZE 100 // user cannot configure to scan files above this size (in MB)
-#ifdef _WIN32
-    #define CAP_SCAN_PATH_LEN (16 * 1024) // max path size to scan
-#else
-    #define CAP_SCAN_PATH_LEN (4 * 1024) // max path size to scan
-#endif
+#define CAP_LANGUAGES 30             // cstat will only show upto 30 languages per scan
+#define CAP_FILE_SIZE 100            // user cannot configure to scan files above this size (in MB)
+#define CAP_SCAN_PATH_LEN (4 * 1024) // max path size to scan
 
 /* defaults */
 #define DEFAULT_SCAN_PATH "."
 
 // TODO: add more patterns to exclude
 static const char *CSTAT_DEFAULT_EXCLUDED_DIRS[] = {
-    ".git", "node_modules", "vendor", "packages",   "build",  "_build",  "dist",        ".cache",        ".out",
-    "out",  ".vscode",      ".idea",  "obj",        "Debug",  "Release", "__pycache__", ".pytest_cache", ".next",
-    ".tmp", "tmp",          "temp",   ".terraform", ".venv",  "venv",    ".gradle",     ".cargo",        ".maven",
-    ".sv",  ".DS_Store",    "logs",   "Logs",       ".local", ".config",
+    ".git",  "node_modules", "vendor",      "packages",      "build",   "_build",  "dist",
+    "var",   ".cache",       ".out",        "out",           ".vscode", ".idea",   "obj",
+    "Debug", "Release",      "__pycache__", ".pytest_cache", ".next",   ".tmp",    "tmp",
+    "temp",  ".terraform",   ".venv",       "venv",          ".gradle", ".cargo",  ".maven",
+    ".sv",   ".DS_Store",    "logs",        "Logs",          ".local",  ".config",
 };
 static const char *CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[] = {
     "bin", "img", "iso", "db",    "dat", "exe",  "dll",    "so",      "o",         "out",

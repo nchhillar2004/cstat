@@ -112,6 +112,7 @@ void cliPrintVersion() {
     printf("%s v%s\n", TARGET_NAME, CSTAT_VERSION);
 }
 
+// TODO
 void cliPrintLanguages() {
     printf("%s: supported languages\n", TARGET_NAME);
 }
