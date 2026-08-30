@@ -55,6 +55,7 @@ static void runScan(Config *config) {
     printf("found %s directories and %s files at \"%s\".\n", _num_format(stats.dir + stats.dirIgnored),
            _num_format(stats.files + stats.filesIgnored), config->path);
     printf("ignored %" PRIu64 " directories and %" PRIu64 " files.\n\n", stats.dirIgnored, stats.filesIgnored);
+    logDebug("path was too long to scan %" PRIu64 " time(s)", stats.pathTooLong);
 
     double endTime = getTime();
     printf("Scan took %.4lfs\n", (double)(endTime - startTime));
@@ -67,18 +68,18 @@ int main(int argc, char *argv[]) {
     CliAction action = parseCliArgs(argc, argv, &cstat_config);
 
     switch (action) {
-        case CMD_SCAN:
-            runScan(&cstat_config);
-            break;
-        case CMD_HELP:
-            cliPrintHelp();
-            break;
-        case CMD_VERSION:
-            cliPrintVersion();
-            break;
-        case CMD_LANGUAGES:
-            cliPrintLanguages();
-            break;
+    case CMD_SCAN:
+        runScan(&cstat_config);
+        break;
+    case CMD_HELP:
+        cliPrintHelp();
+        break;
+    case CMD_VERSION:
+        cliPrintVersion();
+        break;
+    case CMD_LANGUAGES:
+        cliPrintLanguages();
+        break;
     }
 
     return 0;

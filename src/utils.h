@@ -7,14 +7,9 @@
 #define cstat_utils_h
 
 #include <stdbool.h>
-#ifdef _WIN32
-    #define WIN32_LEAN_AND_MEAN
-    #include <windows.h>
-#else
     #include <sys/resource.h>
     #include <sys/time.h>
     #include <unistd.h>
-#endif
 
 typedef enum {
     CSTAT_LOG_ERROR,
