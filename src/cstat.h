@@ -22,8 +22,8 @@
 
 /* max value cap */
 // maximum languages for a project/codebase to scan
-#define CAP_LANGUAGES 30             // cstat will only show upto 30 languages per scan
-#define CAP_FILE_SIZE 100            // user cannot configure to scan files above this size (in MB)
+#define CAP_LANGUAGES 30 // cstat will only show upto 30 languages per scan
+#define CAP_FILE_SIZE 100 // user cannot configure to scan files above this size (in MB)
 #define CAP_SCAN_PATH_LEN (4 * 1024) // max path size to scan
 
 /* defaults */
@@ -31,20 +31,21 @@
 
 // TODO: add more patterns to exclude
 static const char *CSTAT_DEFAULT_EXCLUDED_DIRS[] = {
-    ".git",  "node_modules", "vendor",      "packages",      "build",   "_build",  "dist",
-    "var",   ".cache",       ".out",        "out",           ".vscode", ".idea",   "obj",
-    "Debug", "Release",      "__pycache__", ".pytest_cache", ".next",   ".tmp",    "tmp",
-    "temp",  ".terraform",   ".venv",       "venv",          ".gradle", ".cargo",  ".maven",
-    ".sv",   ".DS_Store",    "logs",        "Logs",          ".local",  ".config",
+	".git",	 "node_modules", "vendor",	"packages",	 "build",   "_build",  "dist",
+	"var",	 ".cache",	 ".out",	"out",		 ".vscode", ".idea",   "obj",
+	"Debug", "Release",	 "__pycache__", ".pytest_cache", ".next",   ".tmp",    "tmp",
+	"temp",	 ".terraform",	 ".venv",	"venv",		 ".gradle", ".cargo",  ".maven",
+	".sv",	 ".DS_Store",	 "logs",	"Logs",		 ".local",  ".config",
 };
 static const char *CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[] = {
-    "bin", "img", "iso", "db",    "dat", "exe",  "dll",    "so",      "o",         "out",
-    "a",   "obj", "lib", "class", "pyc", "lock", "min.js", "min.css", "bundle.js", "etl",
+	"bin", "img", "iso", "db",    "dat", "exe",  "dll",    "so",	  "o",	       "out",
+	"a",   "obj", "lib", "class", "pyc", "lock", "min.js", "min.css", "bundle.js", "etl",
 };
 
-static const size_t EXCLUDED_DIR_COUNT = sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS) / sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS[0]);
+static const size_t EXCLUDED_DIR_COUNT =
+	sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS) / sizeof(CSTAT_DEFAULT_EXCLUDED_DIRS[0]);
 static const size_t EXCLUDED_EXT_COUNT =
-    sizeof(CSTAT_DEFAULT_EXCLUDED_EXTENSIONS) / sizeof(CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[0]);
+	sizeof(CSTAT_DEFAULT_EXCLUDED_EXTENSIONS) / sizeof(CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[0]);
 
 // max/min file size to scan (in MB)
 #define DEFAULT_MAX_FILE_SIZE 10
@@ -59,5 +60,7 @@ static const size_t EXCLUDED_EXT_COUNT =
 #define DEFAULT_USE_GIT_IGNORE true
 
 #define DEFAULT_DISPLAY_LOGS false
+
+#define DEFAULT_PRECISE_NUMBERS false
 
 #endif
