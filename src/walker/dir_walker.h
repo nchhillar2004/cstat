@@ -15,16 +15,18 @@
 #include <unistd.h>
 
 typedef struct {
-    uint64_t dir;
-    uint64_t dirIgnored;
-    uint64_t files;
-    uint64_t filesIgnored;
-    uint64_t pathTooLong;
+	uint64_t dir;
+	uint64_t dirIgnored;
+	uint64_t files;
+	uint64_t filesIgnored;
+	uint64_t pathTooLong;
 } WalkerStats;
 
 /* ===== MACROS ===== */
 
 /* ===== FUNCTIONS ===== */
 bool walkDirectory(const char *path, Config *config, WalkerStats *stats);
+
+unsigned char _get_dtype(int fd, struct dirent *e);
 
 #endif

@@ -7,26 +7,26 @@
 #define cstat_utils_h
 
 #include <stdbool.h>
-    #include <sys/resource.h>
-    #include <sys/time.h>
-    #include <unistd.h>
+#include <sys/resource.h>
+#include <sys/time.h>
+#include <unistd.h>
 
 typedef enum {
-    CSTAT_LOG_ERROR,
-    CSTAT_LOG_WARNING,
-    CSTAT_LOG_SUCCESS,
-    CSTAT_LOG_DEBUG
+	CSTAT_LOG_ERROR,
+	CSTAT_LOG_WARNING,
+	CSTAT_LOG_SUCCESS,
+	CSTAT_LOG_DEBUG
 } LogType;
 
 typedef struct {
-    char **items;
-    size_t size;
-    size_t capacity;
+	char **items;
+	size_t size;
+	size_t capacity;
 } DynamicArray;
 
 typedef struct {
-    DynamicArray ignoredDir;
-    DynamicArray ignoredExt;
+	DynamicArray ignoredDir;
+	DynamicArray ignoredExt;
 } GitIgnore;
 
 /* global log toggle */

@@ -9,20 +9,21 @@
 #include <stdbool.h>
 
 typedef struct {
-    char *path;
+	char *path;
 
-    unsigned int max_file_size;
-    unsigned int min_file_size;
+	unsigned int max_file_size;
+	unsigned int min_file_size;
 
-    unsigned int worker_threads;
+	unsigned int worker_threads;
 
-    bool csv_output;
+	bool csv_output;
 
-    bool use_ignore;
-    bool use_cstat_ignore;
-    bool use_git_ignore;
+	bool use_ignore;
+	bool use_cstat_ignore;
+	bool use_git_ignore;
+	bool precise_numbers;
 
-    bool display_logs;
+	bool display_logs;
 } Config;
 
 /* ===== FUNCTIONS ===== */
