@@ -59,6 +59,8 @@ bool isIgnoredExt(const char *filepath);
 bool isIgnoredDir(const char *dirname);
 void parseGitIgnore(GitIgnore *gitIgnore, int fd, const char *path);
 
+void printWithColor(const char* hex, const char*fmt, ...);
+
 void push(DynamicArray *arr, const char *val);
 int find(DynamicArray *arr, const char *val);
 

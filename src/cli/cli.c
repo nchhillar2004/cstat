@@ -125,8 +125,10 @@ void cliPrintVersion() {
 // TODO
 void cliPrintLanguages() {
 	printf("%s: supported languages\n\n", TARGET_NAME);
-	for (int i = 0; i < LANG_COUNT; i++)
-		printf("%d. %s\n", i + 1, LanguageTable[i].name);
+	for (int i = 0; i < LANG_COUNT; i++) {
+		printf("%d. %s ", i + 1, LanguageTable[i].name);
+		printWithColor(LanguageTable[i].hex, "\u25CF");
+	}
 	printf("\n");
 }
 
