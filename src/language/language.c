@@ -178,10 +178,13 @@ const LanguageInfo LanguageTable[LANG_COUNT] = {
 };
 
 void checkLanguageTable() {
-	logDebug("LanguageTable size: %zu bytes",
-		 sizeof(LanguageTable) + sizeof(CommentStyleTable));
+	logDebug("LanguageTable size: %zu bytes", sizeof(LanguageTable));
+	logDebug("CommentStyleTable size: %zu bytes", sizeof(CommentStyleTable));
 	for (int i = 0; i < LANG_COUNT; i++)
-		if (LanguageTable[i].name == NULL)
+		if (LanguageTable[i].name == NULL) {
 			logError("%d index is null in LanguageTable", i);
+            return;
+        }
 	logSuccess("LanguageTable ok");
+    return;
 }
