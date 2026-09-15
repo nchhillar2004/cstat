@@ -1,0 +1,1233 @@
+# 0 - 4 tiers, can be empty
+# tier = ["systems", "application", "scripting", "web"]
+
+# 0 - 4 paradigms, can be empty
+# paradigms = ["imperative", "oop", "functional", "concurrent", "logic", "declarative"]
+
+# only 1 type, cannot be empty
+# type = "programming"
+# supported types:
+# programming, assembly, text, markup, query, stylesheet, config, shell, template, build, dsl
+
+# atmost one family, can be empty
+# family = "c"
+# supported families:
+# c, c++, ml, lisp, python, algol, pascal, basic, sql, erlang, java, ruby
+
+[language.ADA]
+name = "Ada"
+tier = ["systems"]
+paradigms = ["imperative", "oop", "concurrent"]
+type = "programming"
+family = "pascal"
+hex = "#02F88C"
+line_comments = ["--"]
+extensions = ["ada", "adb", "ads"]
+
+[language.ALGOL]
+name = "ALGOL"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#D1E0DB"
+block_comments = [["comment", ";"]]
+
+[language.ARDUINO]
+name = "Arduino C++"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c++"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["ino"]
+
+[language.ASCII_DOC]
+name = "AsciiDoc"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#73a0c5"
+line_comments = ["//"]
+block_comments = [["////", "////"]]
+extensions = ["adoc", "asciidoc"]
+
+[language.ASP]
+name = "ASP"
+tier = ["web"]
+paradigms = ["imperative"]
+type = "programming"
+family = "basic"
+hex = "#9400ff"
+line_comments = ["'", "REM"]
+extensions = ["asa", "asp"]
+
+[language.ASP_NET]
+name = "ASP.NET"
+tier = ["web", "application"]
+paradigms = ["declarative", "imperative"]
+type = "template"
+hex = "#9400ff"
+block_comments = [["<!--", "-->"], ["<%--", "-->"]]
+extensions = ["asax", "ascx", "asmx", "aspx", "master", "sitemap", "webinfo"]
+
+[language.ASSEMBLY]
+name = "Assembly"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "assembly"
+hex = "#6E4C13"
+line_comments = [";"]
+extensions = ["asm"]
+
+[language.ASSEMBLY_GAS]
+name = "GNU Style Assembly"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "assembly"
+hex = "#6E4C13"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["s"]
+
+[language.ASTRO]
+name = "Astro"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+hex = "#ff5a03"
+line_comments = ["//"]
+block_comments = [["/*", "*/"], ["<!--", "-->"]]
+extensions = ["astro"]
+
+[language.AUTOCONF]
+name = "Autoconf"
+paradigms = ["declarative"]
+type = "dsl"
+line_comments = ["#", "dnl"]
+extensions = ["in"]
+
+[language.BASH]
+name = "BASH"
+tier = ["scripting"]
+paradigms = ["imperative"]
+type = "shell"
+line_comments = ["#"]
+extensions = ["bash"]
+
+[language.BATCH]
+name = "Batch"
+tier = ["scripting"]
+paradigms = ["imperative"]
+type = "shell"
+hex = "#C1F12E"
+line_comments = ["REM", "::"]
+extensions = ["bat", "btm", "cmd"]
+
+[language.C]
+name = "C"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+family = "c"
+hex = "#555555"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["c", "ec", "pgc"]
+
+[language.C_HEADER]
+name = "C Header"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+family = "c"
+hex = "#555555"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["h"]
+
+[language.CLOJURE]
+name = "Clojure"
+tier = ["application"]
+paradigms = ["functional", "concurrent"]
+type = "programming"
+family = "lisp"
+hex = "#db5855"
+line_comments = [";"]
+extensions = ["clj", "cljs", "cljr"]
+
+[language.CMAKE]
+name = "Cmake"
+filename = "CMakeLists.txt"
+paradigms = ["declarative"]
+type = "build"
+hex = "#DA3434"
+line_comments = ["#"]
+extensions = ["cmake"]
+
+[language.COBOL]
+name = "Cobol"
+tier = ["application"]
+paradigms = ["imperative"]
+type = "programming"
+line_comments = ["*"]
+extensions = ["cob", "cbl", "ccp", "cobol", "cpy"]
+
+[language.CPP]
+name = "C++"
+tier = ["systems", "application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c++"
+hex = "#f34b7d"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["cc", "cpp", "cxx", "c++", "pcc", "tpp"]
+
+[language.CPP_HEADER]
+name = "C++ Header"
+tier = ["systems", "application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c++"
+hex = "#f34b7d"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["hh", "hpp", "hxx", "inl", "ipp"]
+
+[language.CPP_MODULE]
+name = "C++ Module"
+tier = ["systems", "application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c++"
+hex = "#f34b7d"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["cppm", "ixx", "ccm", "mpp", "mxx", "cxxm", "hppm", "hxxm"]
+
+[language.CRYSTAL]
+name = "Crystal"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "ruby"
+hex = "#000100"
+line_comments = ["#"]
+extensions = ["cr"]
+
+[language.C_SHARP]
+name = "C#"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+hex = "#7355dd"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["cs", "csx"]
+
+[language.CSS]
+name = "CSS"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "stylesheet"
+hex = "#663399"
+block_comments = [["/*", "*/"]]
+extensions = ["css"]
+
+[language.CUDA]
+name = "Cuda"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c++"
+hex = "#3A4E3A"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["cu"]
+
+[language.CYTHON]
+name = "Cython"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "python"
+hex = "#fedf5b"
+line_comments = ["#"]
+extensions = ["pyx", "pxd", "pxi"]
+
+[language.D]
+name = "D"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c"
+hex = "#ba595e"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["d"]
+
+[language.DART]
+name = "Dart"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+hex = "#00B4AB"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["dart"]
+
+[language.DEVICE_TREE]
+name = "Device Tree"
+tier = ["systems"]
+paradigms = ["declarative"]
+type = "config"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["dts", "dtsi"]
+
+[language.DOCKERFILE]
+name = "Dockerfile"
+filename = "Dockerfile"
+paradigms = ["declarative"]
+type = "config"
+hex = "#384d54"
+line_comments = ["#"]
+extensions = ["dockerfile", "dockerignore"]
+
+[language.DOT_NET_RES]
+name = ".NET Resource"
+tier = ["application"]
+paradigms = ["declarative"]
+type = "config"
+block_comments = [["<!--", "-->"]]
+extensions = ["resx"]
+
+[language.ELISP]
+name = "Emacs Lisp"
+tier = ["scripting"]
+paradigms = ["functional", "oop"]
+type = "programming"
+family = "lisp"
+hex = "#c065db"
+line_comments = [";"]
+extensions = ["el"]
+
+[language.ELIXIR]
+name = "Elixir"
+tier = ["application"]
+paradigms = ["functional", "concurrent", "oop"]
+type = "programming"
+family = "erlang"
+hex = "#6e4a7e"
+line_comments = ["#"]
+extensions = ["ex", "exs"]
+
+[language.ELM]
+name = "Elm"
+tier = ["web"]
+paradigms = ["functional", "declarative"]
+type = "programming"
+family = "ml"
+hex = "#60B5CC"
+line_comments = ["--"]
+block_comments = [["{-", "-}"]]
+nested = true
+extensions = ["elm"]
+
+[language.ERLANG]
+name = "Erlang"
+tier = ["systems"]
+paradigms = ["functional", "concurrent"]
+type = "programming"
+family = "erlang"
+hex = "#B83998"
+line_comments = ["%"]
+extensions = ["erl", "hrl"]
+
+[language.FORTRAN_LEGACY]
+name = "Fortran Legacy"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#4d41b1"
+line_comments = ["c", "C"]
+extensions = ["f", "for", "ftn", "f77", "pfo"]
+
+[language.FORTRAN_MODERN]
+name = "Fortran Modern"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#4d41b1"
+line_comments = ["!"]
+extensions = ["f03", "f08", "f90", "f95", "fpp"]
+
+[language.F_SHARP]
+name = "F#"
+tier = ["application"]
+paradigms = ["functional", "oop"]
+type = "programming"
+family = "ml"
+hex = "#b845fc"
+line_comments = ["//"]
+block_comments = [["(*", "*)"]]
+extensions = ["fs", "fsi", "fsx", "fsscript"]
+
+[language.GDB]
+name = "GDB"
+filename = ".gdbinit"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "dsl"
+line_comments = ["#"]
+extensions = ["gdb"]
+
+[language.GD_SCRIPT]
+name = "GD Script"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "python"
+hex = "#355570"
+line_comments = ["#"]
+extensions = ["gd"]
+
+[language.GD_SHADER]
+name = "GD Shader"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#478CBF"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["gdshader"]
+
+[language.GLEAM]
+name = "Gleam"
+tier = ["application"]
+paradigms = ["functional"]
+type = "programming"
+family = "erlang"
+hex = "#ffaff3"
+line_comments = ["//", "///"]
+extensions = ["gleam"]
+
+[language.GLSL]
+name = "GLSL"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#5686a5"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["vert", "tesc", "tese", "geom", "frag", "comp", "mesh", "task", "rgen", "rint", "rahit", "rchit", "rmiss", "rcall", "glsl"]
+
+[language.GO]
+name = "Go"
+tier = ["systems"]
+paradigms = ["concurrent", "imperative", "functional"]
+type = "programming"
+hex = "#00ADD8"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["go"]
+
+[language.GO_HTML]
+name = "GoHtml"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+hex = "#00ADD8"
+block_comments = [["<!--", "-->"], ["{{/*", "*/}}"]]
+extensions = ["gohtml"]
+
+[language.GRAPHQL]
+name = "GraphQL"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "query"
+hex = "#e10098"
+line_comments = ["#"]
+extensions = ["gql", "graphql"]
+
+[language.GROOVY]
+name = "Groovy"
+tier = ["application"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+family = "java"
+hex = "#4298b8"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["groovy", "grt", "gtpl", "gvy"]
+
+[language.HANDLEBARS]
+name = "Handlebars"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+hex = "#f7931e"
+block_comments = [["<!--", "-->"], ["{{!", "}}"]]
+extensions = ["hbs", "handlebars"]
+
+[language.HASKELL]
+name = "Haskell"
+tier = ["application"]
+paradigms = ["functional"]
+type = "programming"
+family = "ml"
+hex = "#5e5086"
+line_comments = ["--"]
+block_comments = [["{-", "-}"]]
+nested = true
+extensions = ["hs"]
+
+[language.HLSL]
+name = "HLSL"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#aace60"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["hlsl", "fx", "fxsub"]
+
+[language.HOLYC]
+name = "HolyC"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+family = "c"
+hex = "#ffefaf"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["HC", "hc", "ZC", "zc"]
+
+[language.HTML]
+name = "HTML"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#e34c26"
+block_comments = [["<!--", "-->"]]
+extensions = ["html", "htm"]
+
+[language.INI]
+name = "Ini"
+paradigms = ["declarative"]
+type = "config"
+hex = "#d1dbe0"
+line_comments = [";", "#"]
+extensions = ["ini"]
+
+[language.JAI]
+name = "Jai"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+hex = "#ab8b4b"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+nested = true
+extensions = ["jai"]
+
+[language.JAVA]
+name = "Java"
+tier = ["application"]
+paradigms = ["oop", "imperative", "concurrent"]
+type = "programming"
+family = "java"
+hex = "#b07219"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["java"]
+
+[language.JAVASCRIPT]
+name = "JavaScript"
+tier = ["web", "scripting"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+hex = "#f1e05a"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["cjs", "js", "mjs"]
+
+[language.JSON]
+name = "JSON"
+paradigms = ["declarative"]
+type = "config"
+hex = "#292929"
+extensions = ["json"]
+
+[language.JSP]
+name = "JSP"
+tier = ["web"]
+paradigms = ["imperative", "declarative"]
+type = "template"
+family = "java"
+hex = "#2A6277"
+line_comments = ["//"]
+block_comments = [["<%--", "--%>"], ["/*", "*/"]]
+
+[language.JSX]
+name = "JSX"
+tier = ["web"]
+paradigms = ["imperative", "declarative"]
+type = "programming"
+hex = "#f1e05a"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["jsx"]
+
+[language.JULIA]
+name = "Julia"
+tier = ["application"]
+paradigms = ["imperative", "functional"]
+type = "programming"
+hex = "#a270ba"
+line_comments = ["#"]
+block_comments = [["#=", "=#"]]
+nested = true
+extensions = ["jl"]
+
+[language.JUPYTER]
+name = "Jupyter Notebook"
+tier = ["application"]
+paradigms = ["imperative", "functional"]
+type = "config"
+family = "python"
+hex = "#DA5B0B"
+extensions = ["ipynb"]
+
+[language.KOTLIN]
+name = "Kotlin"
+tier = ["application"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+family = "java"
+hex = "#A97BFF"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+nested = true
+extensions = ["kt", "kts"]
+
+[language.LEX]
+name = "Lex"
+paradigms = ["declarative"]
+type = "dsl"
+hex = "#DBCA00"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["l", "lex"]
+
+[language.LINKER_SCRIPT]
+name = "Linker Script"
+tier = ["systems"]
+paradigms = ["declarative"]
+type = "dsl"
+block_comments = [["/*", "*/"]]
+extensions = ["ld", "lds"]
+
+[language.LISP]
+name = "Common Lisp"
+tier = ["application"]
+paradigms = ["functional", "oop"]
+type = "programming"
+family = "lisp"
+hex = "#3fb68b"
+line_comments = [";"]
+block_comments = [["#|", "|#"]]
+nested = true
+extensions = ["lisp", "lsp", "asd"]
+
+[language.LLVM]
+name = "LLVM"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "dsl"
+hex = "#185619"
+line_comments = [";"]
+extensions = ["ll"]
+
+[language.LUA]
+name = "Lua"
+tier = ["scripting"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+hex = "#000080"
+line_comments = ["--"]
+block_comments = [["--[[", "]]"]]
+extensions = ["lua", "luau"]
+
+[language.MAKEFILE]
+name = "Makefile"
+filename = "Makefile"
+paradigms = ["declarative"]
+type = "build"
+hex = "#427819"
+line_comments = ["#"]
+extensions = ["makefile", "mak", "mk"]
+
+[language.MARKDOWN]
+name = "MarkDown"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#083fa1"
+extensions = ["md", "markdown"]
+
+[language.MDX]
+name = "MDX"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#fcb32c"
+extensions = ["mdx"]
+
+[language.METAL]
+name = "Metal"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#8f14e9"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["metal"]
+
+[language.MOJO]
+name = "Mojo"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "python"
+hex = "#ff4c1f"
+line_comments = ["#"]
+extensions = ["mojo", "🔥"]
+
+[language.MS_BUILD]
+name = "MS Build"
+paradigms = ["declarative"]
+type = "build"
+block_comments = [["<!--", "-->"]]
+extensions = ["csproj", "vbproj", "fsproj", "props", "targets"]
+
+[language.MUSTACHE]
+name = "Mustache"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+hex = "#724b3b"
+block_comments = [["{{!", "}}"]]
+extensions = ["mustache"]
+
+[language.NIM]
+name = "Nim"
+tier = ["systems", "application", "scripting"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+family = "pascal"
+hex = "#ffc200"
+line_comments = ["#"]
+extensions = ["nim"]
+
+[language.NIX]
+name = "Nix"
+paradigms = ["functional", "declarative"]
+type = "programming"
+hex = "#7e7eff"
+line_comments = ["#"]
+block_comments = [["/*", "*/"]]
+extensions = ["nix"]
+
+[language.OBJECTIVE_C]
+name = "Objective C"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c"
+hex = "#438eff"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["m"]
+
+[language.OBJECTIVE_CPP]
+name = "Objective C++"
+tier = ["systems"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "c++"
+hex = "#6866fb"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["mm"]
+
+[language.OCAML]
+name = "OCaml"
+tier = ["application", "systems"]
+paradigms = ["functional", "imperative", "oop"]
+type = "programming"
+family = "ml"
+hex = "#ef7a08"
+block_comments = [["(*", "*)"]]
+extensions = ["ml", "re"]
+
+[language.OCAML_INTERFACE]
+name = "OCaml Interface"
+tier = ["application", "systems"]
+paradigms = ["functional", "imperative", "oop"]
+type = "programming"
+family = "ml"
+hex = "#ef7a08"
+block_comments = [["(*", "*)"]]
+extensions = ["mli", "rei"]
+
+[language.ODIN]
+name = "Odin"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+family = "c"
+hex = "#60AFFE"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["odin"]
+
+[language.OPENCL]
+name = "OpenCL"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+family = "c"
+hex = "#ed2e2d"
+block_comments = [["/*", "*/"]]
+extensions = ["cl", "ocl"]
+
+[language.PASCAL]
+name = "Pascal"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "algol"
+hex = "#E3F171"
+line_comments = ["//"]
+block_comments = [["{", "}"], ["(*", "*)"]]
+nested = true
+extensions = ["pas"]
+
+[language.PERL]
+name = "Perl"
+tier = ["scripting"]
+paradigms = ["imperative", "functional", "oop"]
+type = "programming"
+hex = "#0298c3"
+line_comments = ["#"]
+block_comments = [["=pod", "=cut"]]
+extensions = ["pl", "pm"]
+
+[language.PHP]
+name = "PHP"
+tier = ["web"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+hex = "#4F5D95"
+line_comments = ["#", "//"]
+block_comments = [["/*", "*/"]]
+extensions = ["php"]
+
+[language.PROLOG]
+name = "Prolog"
+tier = ["application"]
+paradigms = ["logic"]
+type = "programming"
+hex = "#74283c"
+line_comments = ["%"]
+block_comments = [["/*", "*/"]]
+extensions = ["p", "pro"]
+
+[language.PUG]
+name = "Pug"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+hex = "#a86454"
+line_comments = ["//", "//-"]
+extensions = ["pug"]
+
+[language.PYTHON]
+name = "Python"
+tier = ["application", "scripting"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+family = "python"
+hex = "#3572A5"
+line_comments = ["#"]
+extensions = ["py", "pyw", "pyi"]
+
+[language.R]
+name = "R"
+tier = ["application"]
+paradigms = ["functional", "imperative"]
+type = "programming"
+hex = "#198CE7"
+line_comments = ["#"]
+extensions = ["r"]
+
+[language.RAKEFILE]
+name = "Rakefile"
+filename = "Rakefile"
+paradigms = ["declarative"]
+type = "build"
+family = "ruby"
+line_comments = ["#"]
+block_comments = [["=begin", "=end"]]
+extensions = ["rake"]
+
+[language.RUBY]
+name = "Ruby"
+tier = ["scripting"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+family = "ruby"
+hex = "#701516"
+line_comments = ["#"]
+block_comments = [["=begin", "=end"]]
+extensions = ["rb"]
+
+[language.RUBY_HTML]
+name = "RubyHtml"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+family = "ruby"
+hex = "#701516"
+block_comments = [["<!--", "-->"]]
+extensions = ["rhtml", "erb"]
+
+[language.RUST]
+name = "Rust"
+tier = ["systems"]
+paradigms = ["imperative", "concurrent", "functional"]
+type = "programming"
+hex = "#dea584"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+nested = true
+extensions = ["rs"]
+
+[language.SASS]
+name = "Sass"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "stylesheet"
+hex = "#a53b70"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["sass", "scss"]
+
+[language.SCALA]
+name = "Scala"
+tier = ["application"]
+paradigms = ["functional", "oop"]
+type = "programming"
+family = "java"
+hex = "#c22d40"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["sc", "scala"]
+
+[language.SCHEME]
+name = "Scheme"
+tier = ["application"]
+paradigms = ["functional"]
+type = "programming"
+family = "lisp"
+hex = "#1e4aec"
+line_comments = [";"]
+block_comments = [["#|", "|#"]]
+nested = true
+extensions = ["scm", "ss"]
+
+[language.SHELL]
+name = "Shell"
+tier = ["scripting"]
+paradigms = ["imperative"]
+type = "shell"
+hex = "#89e051"
+line_comments = ["#"]
+
+[language.SML]
+name = "Standard ML"
+tier = ["application"]
+paradigms = ["functional"]
+type = "programming"
+family = "ml"
+hex = "#dc566d"
+block_comments = [["(*", "*)"]]
+extensions = ["sml"]
+
+[language.SOLIDITY]
+name = "Solidity"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+hex = "#AA6746"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["sol"]
+
+[language.SQL]
+name = "SQL"
+tier = ["application"]
+paradigms = ["declarative"]
+type = "query"
+family = "sql"
+hex = "#e38c00"
+line_comments = ["--"]
+block_comments = [["/*", "*/"]]
+extensions = ["sql"]
+
+[language.SVELTE]
+name = "Svelte"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+hex = "#ff3e00"
+block_comments = [["<!--", "-->"]]
+extensions = ["svelte"]
+
+[language.SVG]
+name = "SVG"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#ff9900"
+block_comments = [["<!--", "-->"]]
+extensions = ["svg"]
+
+[language.SWIFT]
+name = "Swift"
+tier = ["application"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+hex = "#F05138"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+nested = true
+extensions = ["swift"]
+
+[language.SYSTEM_VERILOG]
+name = "System Verilog"
+tier = ["systems"]
+paradigms = ["imperative", "declarative"]
+type = "programming"
+hex = "#DAE1C2"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["sv", "svh"]
+
+[language.TCL]
+name = "TCL"
+tier = ["scripting"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#e4cc98"
+line_comments = ["#"]
+extensions = ["tcl"]
+
+[language.TEMPL]
+name = "Templ"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "template"
+hex = "#66D0DD"
+line_comments = ["//"]
+block_comments = [["<!--", "-->"], ["/*", "*/"]]
+extensions = ["templ", "tmpl"]
+
+[language.TEX]
+name = "Tex"
+tier = ["application"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#3D6117"
+line_comments = ["%"]
+extensions = ["tex", "sty"]
+
+[language.TEXT]
+name = "Plain Text"
+type = "text"
+extensions = ["text", "txt"]
+
+[language.TOML]
+name = "TOML"
+paradigms = ["declarative"]
+type = "config"
+hex = "#9c4221"
+line_comments = ["#"]
+extensions = ["toml"]
+
+[language.TSX]
+name = "TSX"
+tier = ["web"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+hex = "#3178c6"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["tsx"]
+
+[language.TYPESCRIPT]
+name = "TypeScript"
+tier = ["web"]
+paradigms = ["imperative", "oop", "functional"]
+type = "programming"
+hex = "#3178c6"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["ts", "mts", "cts"]
+
+[language.TYPST]
+name = "Typst"
+tier = ["application"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#239dad"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+nested = true
+extensions = ["typ"]
+
+[language.UNREAL_SCRIPT]
+name = "Unreal Script"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+hex = "#a54c4d"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["uc", "uci", "upkg"]
+
+[language.UNREAL_SHADER]
+name = "Unreal Shader"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#a54c4d"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["usf"]
+
+[language.VB6]
+name = "VBA/VB6"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "basic"
+hex = "#867db1"
+line_comments = ["'"]
+extensions = ["frm", "bas", "cls", "ctl", "dsr"]
+
+[language.VB_SCRIPT]
+name = "VB Script"
+tier = ["scripting"]
+paradigms = ["imperative"]
+type = "programming"
+family = "basic"
+hex = "#15dcdc"
+line_comments = ["'", "REM"]
+extensions = ["vbs"]
+
+[language.VERILOG]
+name = "Verilog"
+tier = ["systems"]
+paradigms = ["imperative", "declarative"]
+type = "programming"
+hex = "#b2b7f8"
+line_comments = ["//"]
+block_comments = [["/*", "*/"]]
+extensions = ["vg", "vh"]
+
+[language.VISUAL_BASIC]
+name = "Visual Basic"
+tier = ["application"]
+paradigms = ["imperative", "oop"]
+type = "programming"
+family = "basic"
+hex = "#2c6353"
+line_comments = ["'"]
+extensions = ["vb"]
+
+[language.VIM_SCRIPT]
+name = "Vim Script"
+tier = ["scripting"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#199f4b"
+line_comments = ["\""]
+extensions = ["vim"]
+
+[language.WASM]
+name = "Web Assembly"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "assembly"
+hex = "#04133b"
+line_comments = [";;"]
+extensions = ["wat", "wast"]
+
+[language.WGSL]
+name = "WGSL"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#1a5e9a"
+line_comments = ["//"]
+extensions = ["wgsl"]
+
+[language.WOLFRAM]
+name = "Wolfram"
+tier = ["application"]
+paradigms = ["functional", "declarative"]
+type = "programming"
+hex = "#dd1100"
+block_comments = [["(*", "*)"]]
+extensions = ["nb", "wl"]
+
+[language.XML]
+name = "XML"
+tier = ["web"]
+paradigms = ["declarative"]
+type = "markup"
+hex = "#0060ac"
+block_comments = [["<!--", "-->"]]
+extensions = ["xml"]
+
+[language.YAML]
+name = "YAML"
+paradigms = ["declarative"]
+type = "config"
+hex = "#cb171e"
+line_comments = ["#"]
+extensions = ["yaml", "yml"]
+
+[language.ZIG]
+name = "Zig"
+tier = ["systems"]
+paradigms = ["imperative"]
+type = "programming"
+hex = "#ec915c"
+line_comments = ["//"]
+extensions = ["zig"]
+
+[language.ZSH]
+name = "Zsh"
+tier = ["scripting"]
+paradigms = ["imperative"]
+type = "shell"
+line_comments = ["#"]
+extensions = ["zsh"]
+
+[language.UNKNOWN]
+name = "Unknown"
+type = "text"
