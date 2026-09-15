@@ -1,6 +1,5 @@
 #include "cli/cli.h"
 #include "config.h"
-#include "language/language.h"
 #include "utils.h"
 #include "walker/dir_walker.h"
 #include <inttypes.h>
@@ -44,7 +43,6 @@ static char *_num_format(uint64_t num, bool precise) {
 }
 
 static void runScan(Config *config) {
-	checkLanguageTable();
 	double startTime = getTime();
 
 	WalkerStats stats = { 0 };

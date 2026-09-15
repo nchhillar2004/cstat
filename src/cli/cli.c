@@ -1,6 +1,5 @@
 #include "cli/cli.h"
 #include "cstat.h"
-#include "language/language.h"
 #include "utils.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -125,10 +124,6 @@ void cliPrintVersion() {
 // TODO
 void cliPrintLanguages() {
 	printf("%s: supported languages\n\n", TARGET_NAME);
-	for (int i = 0; i < LANG_COUNT; i++) {
-		printf("%d. %s ", i + 1, LanguageTable[i].name);
-		printWithColor(LanguageTable[i].hex, "\u25CF");
-	}
 	printf("\n");
 }
 

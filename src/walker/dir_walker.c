@@ -11,8 +11,7 @@ GitIgnore gitIgnore_s = { 0 };
 unsigned char _get_dtype(int fd, struct dirent *e) {
 	unsigned char dtype = e->d_type;
 
-	if (dtype != DT_UNKNOWN)
-		return dtype;
+	if (dtype != DT_UNKNOWN) return dtype;
 
 	struct stat st;
 
@@ -46,8 +45,7 @@ bool walkDirectory(const char *root, Config *config, WalkerStats *stats) {
 
 	struct dirent *entry = NULL;
 	while ((entry = readdir(dir)) != NULL) {
-		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-			continue;
+		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
 
 		char path[CAP_SCAN_PATH_LEN];
 		const char *_root = strcmp(root, "/") == 0 ? "" : root;
