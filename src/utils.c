@@ -74,6 +74,21 @@ bool isIgnoredDir(const char *dirname) {
 void parseGitIgnore(GitIgnore *gitIgnore, int fd, const char *path) {
 }
 
+void printWithColor(const char *hex, const char *fmt, ...) {
+	va_list args;
+
+    if (hex != NULL) {
+	    int r, g, b;
+	    sscanf(hex, "#%02x%02x%02x", &r, &g, &b);
+	    printf("\033[38;2;%d;%d;%dm", r, g, b);
+    }
+	va_start(args, fmt);
+	vprintf(fmt, args);
+	va_end(args);
+
+	printf("\033[0m\n");
+}
+
 void push(DynamicArray *arr, const char *value) {
 	if (arr->size >= arr->capacity) {
 		arr->capacity = arr->capacity ? arr->capacity * 2 : 64;

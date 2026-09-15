@@ -7,9 +7,12 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
 
 #define MAX_COMMENT_STYLES 2
+#define NUM_COMMENT_STYLES 44
 
+// TODO add more languages
 typedef enum {
 	ADA,
 	ALGOL,
@@ -148,15 +151,21 @@ typedef struct {
 	const char *line[MAX_COMMENT_STYLES];
 	BlockComment block[MAX_COMMENT_STYLES];
 	bool nested;
-} CommentInfo;
+} CommentStyle;
 
 typedef struct {
 	const char *name;
 	const char *hex;
-	CommentInfo comment;
+	uint8_t styleIndex;
 } LanguageInfo;
 
+extern const CommentStyle CommentStyleTable[NUM_COMMENT_STYLES];
 extern const LanguageInfo LanguageTable[LANG_COUNT];
+
+
+static inline const CommentStyle *langComment(LanguageId id) {
+	return &CommentStyleTable[LanguageTable[id].styleIndex];
+}
 
 extern void checkLanguageTable();
 
