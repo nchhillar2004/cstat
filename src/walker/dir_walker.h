@@ -15,7 +15,7 @@
 #include <unistd.h>
 
 typedef struct {
-	uint64_t dir;
+	uint64_t *dir;
 	uint64_t dirIgnored;
 	uint64_t files;
 	uint64_t filesIgnored;

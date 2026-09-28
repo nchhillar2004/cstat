@@ -1,6 +1,5 @@
 #include "cli/cli.h"
 #include "cstat.h"
-#include "language/language.h"
 #include "utils.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -8,11 +7,11 @@
 #include <string.h>
 #include <threads.h>
 
-CliAction parseCliArgs(int argc, char *argv[], Config *config) {
+CliAction parseCliArgs(int argc, char *argv[], Config *config)
+{
 	// iterate throught all arguments and parse them, make changes to config if config flags are present
 	for (int i = 1; i < argc; i++) {
 		char *arg = argv[i];
-
 		/* cstat commands */
 		if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0)
 			return CMD_HELP;
@@ -91,7 +90,8 @@ CliAction parseCliArgs(int argc, char *argv[], Config *config) {
 	return CMD_SCAN;
 }
 
-void cliPrintHelp() {
+void cliPrintHelp()
+{
 	printf("%s - code statistics analyzer\n\n", TARGET_NAME);
 	printf("Usage: %s [command] [options] [path]\n\n", TARGET_NAME);
 
@@ -118,21 +118,20 @@ void cliPrintHelp() {
 	printf("    -d          --debug                        Enable debug logging\n");
 }
 
-void cliPrintVersion() {
+void cliPrintVersion()
+{
 	printf("%s v%s\n", TARGET_NAME, CSTAT_VERSION);
 }
 
 // TODO
-void cliPrintLanguages() {
+void cliPrintLanguages()
+{
 	printf("%s: supported languages\n\n", TARGET_NAME);
-	for (int i = 0; i < LANG_COUNT; i++) {
-		printf("%d. %s ", i + 1, LanguageTable[i].name);
-		printWithColor(LanguageTable[i].hex, "\u25CF");
-	}
 	printf("\n");
 }
 
-unsigned int _parse_arg_value(const char *value, const char *arg) {
+unsigned int _parse_arg_value(const char *value, const char *arg)
+{
 	char *end;
 
 	// convert string value to interger
