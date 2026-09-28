@@ -1,7 +1,8 @@
 #include "config.h"
 #include "cstat.h"
 
-void initConfig(Config *config) {
+void initConfig(Config *config)
+{
 	config->path = DEFAULT_SCAN_PATH;
 	config->max_file_size = DEFAULT_MAX_FILE_SIZE;
 	config->min_file_size = DEFAULT_MIN_FILE_SIZE;

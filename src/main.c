@@ -15,7 +15,8 @@
 // 1B
 #define B1 (M1 * 1000)
 
-static char *_num_format(uint64_t num, bool precise) {
+static char *_num_format(uint64_t num, bool precise)
+{
 	char *str = malloc(8);
 	if (num < K100 || precise) {
 		snprintf(str, sizeof(str), "%lu", num);
@@ -42,7 +43,8 @@ static char *_num_format(uint64_t num, bool precise) {
 	return str;
 }
 
-static void runScan(Config *config) {
+static void runScan(Config *config)
+{
 	double startTime = getTime();
 
 	WalkerStats stats = { 0 };
@@ -69,7 +71,8 @@ static void runScan(Config *config) {
 	printf("Cstat took %.4lfs\n", (double)(endTime - startTime));
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	Config cstat_config;
 	initConfig(&cstat_config);
 

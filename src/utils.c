@@ -8,7 +8,8 @@
 
 bool CSTAT_DISPLAY_LOGS = DEFAULT_DISPLAY_LOGS;
 
-unsigned int getAvailableThreads() {
+unsigned int getAvailableThreads()
+{
 	// number of processors currently online (available)
 	long cpus = 0;
 
@@ -16,20 +17,18 @@ unsigned int getAvailableThreads() {
 
 	// if error cpus will be equal to -1
 	// in that case use DEFAULT_WORKER_THREADS
-	if (cpus <= 0)
-		return DEFAULT_WORKER_THREADS;
+	if (cpus <= 0) return DEFAULT_WORKER_THREADS;
 
 	// TODO: should i use this ?
-	if (cpus > 64)
-		return 64; //
+	if (cpus > 64) return 64; //
 
 	return (unsigned int)cpus;
 }
 
 // TODO: review, test this function
-const char *getFilenameFromPath(const char *filepath) {
-	if (filepath == NULL)
-		return "";
+const char *getFilenameFromPath(const char *filepath)
+{
+	if (filepath == NULL) return "";
 
 	const char *unix_separator = strrchr(filepath, '/');
 	// const char *windows_separator = strrchr(filepath, '\\');
@@ -38,50 +37,53 @@ const char *getFilenameFromPath(const char *filepath) {
 	return separator == NULL ? filepath : separator + 1;
 }
 
-double getTime() {
+double getTime()
+{
 	struct timeval t;
 	struct timezone tzp;
 	gettimeofday(&t, &tzp);
 	return t.tv_sec + t.tv_usec * 1e-6;
 }
 
-bool hasExtension(const char *path, const char *ext) {
+bool hasExtension(const char *path, const char *ext)
+{
 	const char *dot = strrchr(path, '.');
 
-	if (dot == NULL)
-		return false;
+	if (dot == NULL) return false;
 
 	return strcmp(dot + 1, ext) == 0;
 }
 
-bool isIgnoredExt(const char *filepath) {
+bool isIgnoredExt(const char *filepath)
+{
 	for (size_t i = 0; i < EXCLUDED_EXT_COUNT; i++) {
-		if (hasExtension(filepath, CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[i]))
-			return true;
+		if (hasExtension(filepath, CSTAT_DEFAULT_EXCLUDED_EXTENSIONS[i])) return true;
 	}
 	return false;
 }
 
-bool isIgnoredDir(const char *dirname) {
+bool isIgnoredDir(const char *dirname)
+{
 	for (size_t i = 0; i < EXCLUDED_DIR_COUNT; i++) {
-		if (strcmp(dirname, CSTAT_DEFAULT_EXCLUDED_DIRS[i]) == 0)
-			return true;
+		if (strcmp(dirname, CSTAT_DEFAULT_EXCLUDED_DIRS[i]) == 0) return true;
 	}
 	return false;
 }
 
 // TODO
-void parseGitIgnore(GitIgnore *gitIgnore, int fd, const char *path) {
+void parseGitIgnore(GitIgnore *gitIgnore, int fd, const char *path)
+{
 }
 
-void printWithColor(const char *hex, const char *fmt, ...) {
+void printWithColor(const char *hex, const char *fmt, ...)
+{
 	va_list args;
 
-    if (hex != NULL) {
-	    int r, g, b;
-	    sscanf(hex, "#%02x%02x%02x", &r, &g, &b);
-	    printf("\033[38;2;%d;%d;%dm", r, g, b);
-    }
+	if (hex != NULL) {
+		int r, g, b;
+		sscanf(hex, "#%02x%02x%02x", &r, &g, &b);
+		printf("\033[38;2;%d;%d;%dm", r, g, b);
+	}
 	va_start(args, fmt);
 	vprintf(fmt, args);
 	va_end(args);
@@ -89,7 +91,8 @@ void printWithColor(const char *hex, const char *fmt, ...) {
 	printf("\033[0m\n");
 }
 
-void push(DynamicArray *arr, const char *value) {
+void push(DynamicArray *arr, const char *value)
+{
 	if (arr->size >= arr->capacity) {
 		arr->capacity = arr->capacity ? arr->capacity * 2 : 64;
 		arr->items = realloc(arr->items, arr->capacity * sizeof(*arr->items));
@@ -97,17 +100,17 @@ void push(DynamicArray *arr, const char *value) {
 	arr->items[arr->size++] = strdup(value);
 }
 
-int find(DynamicArray *arr, const char *val) {
+int find(DynamicArray *arr, const char *val)
+{
 	for (int i = 0; i < arr->size; i++) {
-		if (strcmp(arr->items[i], val) == 0)
-			return i;
+		if (strcmp(arr->items[i], val) == 0) return i;
 	}
 	return -1;
 }
 
-void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...) {
-	if (!CSTAT_DISPLAY_LOGS)
-		return;
+void _cstat_log(const char *filename, const char *function, LogType type, const char *fmt, ...)
+{
+	if (!CSTAT_DISPLAY_LOGS) return;
 
 	va_list args;
 

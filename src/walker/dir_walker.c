@@ -8,7 +8,8 @@
 
 GitIgnore gitIgnore_s = { 0 };
 
-unsigned char _get_dtype(int fd, struct dirent *e) {
+unsigned char _get_dtype(int fd, struct dirent *e)
+{
 	unsigned char dtype = e->d_type;
 
 	if (dtype != DT_UNKNOWN) return dtype;
@@ -25,7 +26,8 @@ unsigned char _get_dtype(int fd, struct dirent *e) {
 	return dtype;
 }
 
-bool walkDirectory(const char *root, Config *config, WalkerStats *stats) {
+bool walkDirectory(const char *root, Config *config, WalkerStats *stats)
+{
 	DIR *dir = NULL;
 	dir = opendir(root);
 	if (dir == NULL) {
