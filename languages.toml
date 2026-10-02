@@ -570,6 +570,7 @@ family = "java"
 hex = "#2A6277"
 line_comments = ["//"]
 block_comments = [["<%--", "--%>"], ["/*", "*/"]]
+extensions = ["jsp", "jspf"]
 
 [language.JSX]
 name = "JSX"
@@ -956,6 +957,7 @@ paradigms = ["imperative"]
 type = "shell"
 hex = "#89e051"
 line_comments = ["#"]
+extensions = ["sh"]
 
 [language.SML]
 name = "Standard ML"
